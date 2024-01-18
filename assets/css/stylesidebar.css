@@ -1,0 +1,7 @@
+.sidebar-submenu {
+    display: none; /* Sembunyikan submenu secara default */
+  }
+  
+  .sidebar-item:hover .sidebar-submenu {
+    display: block; /* Tampilkan submenu saat menu utama dihover */
+  }
