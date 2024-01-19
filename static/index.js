@@ -44,7 +44,7 @@ CihuyDomReady(() => {
     .then((data) => {
         if (data && Array.isArray(data.data)) {
             let tableData = "";
-            data.data.forEach((item) => {
+            data.data.forEach((item, index) => {
                 if (item.persyaratan) {
                     const values = item.persyaratan;
                     const jadwal = item.jadwal;
@@ -62,6 +62,9 @@ CihuyDomReady(() => {
                     // Your existing mapping logic here
                     tableData += `
                         <tr>
+                            <td>
+                                <p class="fw-bold mb-1">${index + 1}</p>
+                            </td>
                             <td>
                                 <p class="fw-bold mb-1">${values.npm_1}</p>
                             </td>
@@ -82,6 +85,15 @@ CihuyDomReady(() => {
             });
             // Tampilkan data pegawai ke dalam tabel
             document.getElementById("tablebody").innerHTML = tableData;
+
+            // Menghitung banyaknya data
+            const totalData = data.data.length;
+
+            // Untuk menampilkan jumlah pengajuan sidang di html
+            const jumlahPengjuanSidangElement = CihuyId("jumlahPengjuanSidang");
+            if (jumlahPengjuanSidangElement) {
+                jumlahPengjuanSidangElement.innerText = `Jumlah Pengajuan: ${totalData}`;
+            }
     
             // Untuk Memunculkan Pagination Halamannya
             displayData(halamannow);
