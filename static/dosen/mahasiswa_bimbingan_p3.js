@@ -80,7 +80,7 @@ CihuyDomReady(() => {
                             <p class="fw-bold mb-1">${waktuSidangFormatted}</p>
                         </td>
                         <td>
-                            <button type="button" class="btn btn-info m-1" style="font-size:8px">Approve</button>
+                            <button type="button" class="btn btn-primary m-1" style="font-size:10px">Approve</button>
                         </td>
                         <td>
                             <p class="fw-bold mb-1">Belum Ada</p>
