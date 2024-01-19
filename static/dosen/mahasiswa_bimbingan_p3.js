@@ -80,14 +80,14 @@ CihuyDomReady(() => {
                             <p class="fw-bold mb-1">${waktuSidangFormatted}</p>
                         </td>
                         <td>
-                        <button type="button" class="btn btn-info m-1" style="font-size:8px">Approve Sidang</button>
+                            <button type="button" class="btn btn-info m-1" style="font-size:8px">Approve</button>
                         </td>
                         <td>
                             <p class="fw-bold mb-1">Belum Ada</p>
                             <p class="fw-bold mb-1">Belum Ada</p>
                         </td>
                         <td>
-                        <a href="input_nilai_bimbingan_p3.html" type="button" class="btn btn-info m-1" style="font-size:8px">Input Nilai</a>
+                            <a href="input_nilai_bimbingan_p3.html" type="button" class="btn btn-info m-1" style="font-size:8px">Input Nilai</a>
                         </td>
                     </tr>`;
                 }
