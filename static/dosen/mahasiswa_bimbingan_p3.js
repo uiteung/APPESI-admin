@@ -87,7 +87,7 @@ CihuyDomReady(() => {
                             <p class="fw-bold mb-1">Belum Ada</p>
                         </td>
                         <td>
-                            <a href="input_nilai_bimbingan_p3.html" type="button" class="btn btn-info m-1">Input Nilai</a>
+                            <a href="input_nilai_bimbingan_p3.html" type="button" class="btn btn-info m-1" style="font-size:10px">Nilai</a>
                         </td>
                     </tr>`;
                 }
