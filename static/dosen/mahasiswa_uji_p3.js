@@ -44,7 +44,7 @@ CihuyDomReady(() => {
     .then((data) => {
         if (data && Array.isArray(data.data)) {
             let tableData = "";
-            data.data.forEach((item) => {
+            data.data.forEach((item, index) => {
                 if (item.persyaratan) {
                     const values = item.persyaratan;
                     const jadwal = item.jadwal;
@@ -63,6 +63,9 @@ CihuyDomReady(() => {
                     tableData += `
                     <tr style="text-align: center; vertical-align: middle">
                         <td>
+                            <p class="fw-bold mb-1">${index + 1}</p>
+                        </td>
+                        <td>
                             <p class="fw-bold mb-1">${values.npm_1}</p>
                             <p class="fw-bold mb-1">${values.npm2}</p>
                         </td>
@@ -77,14 +80,14 @@ CihuyDomReady(() => {
                             <p class="fw-bold mb-1">${waktuSidangFormatted}</p>
                         </td>
                         <td>
-                            <button type="button" class="btn btn-info m-1" style="font-size:10px">Approve Sidang</button>
+                            <button type="button" class="btn btn-info m-1" style="font-size:8px">Approve Sidang</button>
                         </td>
                         <td>
                             <p class="fw-bold mb-1">Belum Ada</p>
                             <p class="fw-bold mb-1">Belum Ada</p>
                         </td>
                         <td>
-                        <a href="input_nilai_bimbingan_p3.html" type="button" class="btn btn-info m-1" style="font-size:10px">Input Nilai</a>
+                        <a href="input_nilai_bimbingan_p3.html" type="button" class="btn btn-info m-1" style="font-size:8px">Input Nilai</a>
                         </td>
                     </tr>`;
                 }
