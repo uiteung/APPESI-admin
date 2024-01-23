@@ -73,14 +73,9 @@ function SubmitPendaftaranSidangP3() {
       } else {
         url = "https://kimteungbim.ulbi.ac.id/sidang/p3/revisi/"
       }
-
-    fetch(url, {
-        method : "POST",
-        headers: header,
-        body : JSON.stringify(myData)
-    })
-    .then(response => response.json())
-    .then(data => {
+    
+    postWithToken(url, "LOGIN", token,  data => {
+        // Handle results for the second action
         if (data.status === "success") {
             Swal.fire({
                 icon : 'success',
@@ -99,8 +94,5 @@ function SubmitPendaftaranSidangP3() {
                 text : 'Input Revisi Sidang Proyek 3 Gagal Disubmit'
             })
         }
-    })
-    .catch(error => {
-        console.error("Error saat melakukan POST Data : ", error);
     });
 }
