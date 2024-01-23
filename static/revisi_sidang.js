@@ -1,10 +1,9 @@
 // Import library dan function yang dibutukan
 import { postWithToken } from "https://jscroot.github.io/api/croot.js";
-import { getCookie } from "https://jscroot.github.io/cookie/croot.js";
+// import { getCookie } from "https://jscroot.github.io/cookie/croot.js";
 import { getValue } from "https://jscroot.github.io/element/croot.js";
 import { token } from "./controller/cookies.js";
 
-let token = getCookie("login")
 if (token == "") {
     window.location.href("https://euis.ulbi.ac.id/")
 }
