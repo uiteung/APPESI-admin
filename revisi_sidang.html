@@ -27,7 +27,7 @@
 
       <div class="container-fluid">
         <h6 class="right-aligned" style="float: right">
-          <a href="index.html">Home Dosen</a> / <a href="">Penilaian Mahasiswa Uji</a> / Proyek 3
+          <a href="index.html">Home Dosen</a> / Input Revisi Sidang
         </h6>
         <h1 class="h3 mb-3"><b>Input Revisi Sidang</b></h1>
         <div class="container-fluid">
@@ -37,21 +37,34 @@
               <div class="card">
                 <div class="card-body">
                   <form>
-                    <h5 class="card-title fw-semibold mb-4">Silahkan Input Revisi Sidang</h5>
-                      <!-- Semua Endpoint Berfungsi Termasuk Otorisasi dan Autentikasi Token -->
+                      <!-- Masukan NIM mahasiswa yang diuji -->
                       <div class="mb-3">
-                        <label for="Nim" class="form-label">Masukan NIM mahasiswa yang diuji</label>
-                        <input type="text" class="form-control" id="inputNilaiNIM" placeholder="Inputkan NIM">
+                        <label for="npm" class="form-label">Masukan NPM mahasiswa yang diuji</label>
+                        <input type="text" class="form-control" id="inputNilaiNPM" placeholder="Masukkan NIM">
                       </div>
-                      <!-- Package Dibuat Sendiri dan Semua Digunakan -->
+                      <!-- Tahun Akademik -->
                       <div class="mb-3">
-                        <label for="TahunAka" class="form-label">Tahun Akademik</label>
-                        <input type="text" class="form-control" id="inputNilaiTahun" placeholder="Contoh 2023-2024">
+                        <label for="tahun_akademik" class="form-label">Tahun Akademik</label>
+                        <input type="text" class="form-control" id="inputTahunAkademik" placeholder="Contoh 2023-2024">
+                        <div id="textHelp" class="form-text">*contoh : 2023-2024</div>
                       </div>
-                      <!-- Semua Endpoint di GCF Memakai Package yang Dibuat dan Lokasi Server di Jakarta -->
+                      <!-- Input Tipe Bimbingan -->
                       <div class="mb-3">
-                        <label for="Inputrevisi" class="form-label">Silahkan Input Revisi</label>
-                        <input type="textarea" class="form-control" id="Inputrevisi" placeholder="Inputkan Nilai">
+                        <label for="tahun_akademik" class="form-label">Input Tipe Bimbingan</label>
+                        <select class="form-select" id="selectTipeBimbingan">
+                            <option value="">Masukkan Tipe Bimbingan</option>
+                            <option value="p1">Proyek 1</option>
+                            <option value="p2">Proyek 2</option>
+                            <option value="p3">Proyek 3</option>
+                            <option value="i1">Internship 1</option>
+                            <option value="i2">Internship 2</option>
+                            <option value="ta">Tugas Akhir</option>
+                          </select>
+                      </div>
+                      <!-- Silahkan Input Revisi -->
+                      <div class="mb-3">
+                        <label for="inputRevisi" class="form-label">Silahkan Input Revisi</label>
+                        <input type="textarea" class="form-control" id="inputRevisi" placeholder="Masukkan Revisi" >
                       </div>
                     <button type="submit" class="btn btn-primary">Ajukan Nilai</button>
                   </form>
@@ -62,16 +75,15 @@
         </div>
       </div>
   </div>
-  <script src="../static/theme/bar/sidebar.js" type="module"></script>
-  <script src="../static/theme/bar/navbar.js" type="module"></script>
-  <script src="../static/revisi_sidangi.js" type="module"></script>
-  <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
-  <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="../assets/js/sidebarmenu.js"></script>
-  <script src="../assets/js/app.min.js"></script>
-  <script src="../assets/libs/simplebar/dist/simplebar.js"></script>
-
-  <script src="../assets/js/dashboard.js"></script>
+  <script src="static/theme/bar/sidebar.js" type="module"></script>
+  <script src="static/theme/bar/navbar.js" type="module"></script>
+  <script src="static/revisi_sidangi.js" type="module"></script>
+  <script src="assets/libs/jquery/dist/jquery.min.js"></script>
+  <script src="assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/sidebarmenu.js"></script>
+  <script src="assets/js/app.min.js"></script>
+  <script src="assets/libs/simplebar/dist/simplebar.js"></script>
+  <script src="assets/js/dashboard.js"></script>
 </body>
 
 </html>
