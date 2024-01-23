@@ -44,57 +44,65 @@ form.addEventListener('submit', (event) => {
     }).then((result) => {
         if (result.isConfirmed) {
             // Call the correct function (SubmitPendaftaranSidangP3)
-            SubmitPendaftaranSidangP3();
+            SubmitRevisiSidang();
         }
     });
 });
 
 // Untuk POST Pendaftaran Sidang P3
 // Membuat function untuk mengirimkan data pendaftaran sidang p3
-function SubmitPendaftaranSidangP3() {
-    const InputNPM = getValue('inputNilaiNPM');
-    const InputTahun = getValue('inputTahunAkademik');
-    const InputTipeBimbingan = getValue('selectTipeBimbingan');
-    const InputRevisi = getValue('inputRevisi');
+function SubmitRevisiSidang() {
+    document.addEventListener("DOMContentLoaded", function() {
+        const form = document.getElementById("form");
 
-    let split = InputRevisi.split(",")
+        form.addEventListener("submit", function(event) {
+            event.preventDefault();
 
-    const myData = {
-        "nim" : InputNPM,
-        "tahun_aka" : InputTahun,
-        "tipe" : InputTipeBimbingan,
-        "revisi" : split
-    };
+            const InputNPM = getValue('inputNilaiNPM');
+            const InputTahun = getValue('inputTahunAkademik');
+            const InputTipeBimbingan = getValue('selectTipeBimbingan');
+            const InputRevisi = getValue('inputRevisi');
 
-    console.log(myData);
+            let split = InputRevisi.split(",")
 
-    // Pengkondisian endpoint
-    let url = ""
-    if (InputTipeBimbingan != "p3"){
-        url = "https://kimteungbim.ulbi.ac.id/revisi/"
-      } else {
-        url = "https://kimteungbim.ulbi.ac.id/sidang/p3/revisi/"
-      }
-    
-    postWithToken(url, "LOGIN", token,  data => {
-        // Handle results for the second action
-        if (data.status === "success") {
-            Swal.fire({
-                icon : 'success',
-                title : 'Sukses!',
-                text : 'Input Revisi Sidang Proyek 3 Berhasil Disubmit',
-                showConfirmButton : false,
-                timer : 1500
-            })
-            .then(() => {
-                window.location.href = 'revisi_sidang.html';
-            })
-        } else {
-            Swal.fire({
-                icon : 'error',
-                title : 'Oops...',
-                text : 'Input Revisi Sidang Proyek 3 Gagal Disubmit'
-            })
-        }
+            const myData = {
+                "nim" : InputNPM,
+                "tahun_aka" : InputTahun,
+                "tipe" : InputTipeBimbingan,
+                "revisi" : split
+            };
+
+            console.log(myData);
+
+            // Pengkondisian endpoint
+            let url = ""
+            if (InputTipeBimbingan != "p3"){
+                url = "https://kimteungbim.ulbi.ac.id/revisi/"
+            } else {
+                url = "https://kimteungbim.ulbi.ac.id/sidang/p3/revisi/"
+            }
+            
+            postWithToken(url, "LOGIN", token,  data => {
+                // Handle results for the second action
+                if (data.status === "success") {
+                    Swal.fire({
+                        icon : 'success',
+                        title : 'Sukses!',
+                        text : 'Input Revisi Sidang Proyek 3 Berhasil Disubmit',
+                        showConfirmButton : false,
+                        timer : 1500
+                    })
+                    .then(() => {
+                        window.location.href = 'revisi_sidang.html';
+                    })
+                } else {
+                    Swal.fire({
+                        icon : 'error',
+                        title : 'Oops...',
+                        text : 'Input Revisi Sidang Proyek 3 Gagal Disubmit'
+                    });
+                };
+            });
+        });
     });
-}
+};
