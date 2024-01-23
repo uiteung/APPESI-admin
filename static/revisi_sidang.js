@@ -1,6 +1,6 @@
 // Import library dan function yang dibutukan
 import { getValue } from "https://cdn.jsdelivr.net/gh/jscroot/element@0.0.5/croot.js";
-import { token } from "../controller/cookies.js"
+import { token } from "./controller/cookies.js";
 
 var header = new Headers();
 // header.append("AUTH", token);
