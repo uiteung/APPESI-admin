@@ -2,15 +2,17 @@ import { postWithToken } from "https://jscroot.github.io/api/croot.js";
 import { getCookie } from "https://jscroot.github.io/cookie/croot.js";
 import { getValue } from "https://jscroot.github.io/element/croot.js";
 
-let token = getCookie("login");
+
+let token = getCookie("login")
 if (token == "") {
-    window.location.href = "https://euis.ulbi.ac.id/";
+    window.location.href("https://euis.ulbi.ac.id/")
 }
+
 
 document.addEventListener("DOMContentLoaded", function() {
     const form = document.getElementById("form");
   
-    form.addEventListener("submit", async function(event) {
+    form.addEventListener("submit", function(event) {
       event.preventDefault();
 
       const InputNPM = getValue('inputNilaiNPM');
@@ -18,49 +20,31 @@ document.addEventListener("DOMContentLoaded", function() {
       const InputTipeBimbingan = getValue('selectTipeBimbingan');
       const InputRevisi = getValue('inputRevisi');
 
-      let url = "";
-      if (InputTipeBimbingan != "p3") {
-        url = "https://kimteungbim.ulbi.ac.id/revisi/";
+      let url = ""
+      if (InputTipeBimbingan != "p3"){
+        url = "https://kimteungbim.ulbi.ac.id/revisi/"
       } else {
-        url = "https://kimteungbim.ulbi.ac.id/sidang/p3/revisi/";
+        url = "https://kimteungbim.ulbi.ac.id/sidang/p3/revisi/"
       }
 
-      let split = InputRevisi.split(",");
+      let split = InputRevisi.split(",")
   
       let data = {
         "nim" : InputNPM,
         "tahun_aka" : InputTahun,
         "tipe" : InputTipeBimbingan,
         "revisi" : split
-      };
+    };
   
       console.log(data);
   
-      try {
-        const results = await postWithToken(url, "LOGIN", token, data);
-        if (results.status === "success") {
-          Swal.fire({
-            icon: 'success',
-            title: 'Sukses!',
-            text: "Input Revisi Sidang Berhasil Disubmit",
-            showConfirmButton: false,
-            timer: 1500
-          }).then(() => {
-            window.location.href = 'revisi_sidang.html';
-          });
-        } else {
-          Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: "Input Revisi Sidang Gagal Disubmit"
-          });
-        }
-      } catch (error) {
-        console.error("Error during POST request:", error);
-      }
+      postWithToken(url, "LOGIN", token,  data, (results) => {
+        // Handle results for the second action
+        alert(results.status)
+      });
     });
-});
+})  
 
 function responsesdata(value) {
-    console.log(value);
+    console.log(value)
 }
