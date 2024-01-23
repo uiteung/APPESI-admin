@@ -14,12 +14,13 @@ form.addEventListener('submit', (event) => {
     event.preventDefault();
 
     // Your existing code for handling the button click
-    const InputNPM = getValue('inputNilaiNIM');
-    const InputTahun = getValue('inputNilaiTahun');
-    const InputRevisi = getValue('inputrevisi');
+    const InputNPM = getValue('inputNilaiNPM');
+    const InputTahun = getValue('inputTahunAkademik');
+    const InputTipeBimbingan = getValue('selectTipeBimbingan');
+    const InputRevisi = getValue('inputRevisi');
 
     // Check if all required fields are filled
-    if (!InputTahun || !InputNPM || !InputRevisi) {
+    if (!InputTahun || !InputNPM || InputTipeBimbingan || !InputRevisi) {
         Swal.fire({
             icon: 'warning',
             title: 'Oops...',
@@ -49,21 +50,31 @@ form.addEventListener('submit', (event) => {
 // Untuk POST Pendaftaran Sidang P3
 // Membuat function untuk mengirimkan data pendaftaran sidang p3
 function SubmitPendaftaranSidangP3() {
-    const InputNPM = getValue('inputNilaiNIM');
-    const InputTahun = getValue('inputNilaiTahun');
-    const InputRevisi = getValue('inputrevisi');
+    const InputNPM = getValue('inputNilaiNPM');
+    const InputTahun = getValue('inputTahunAkademik');
+    const InputTipeBimbingan = getValue('selectTipeBimbingan');
+    const InputRevisi = getValue('inputRevisi');
 
     let split = InputRevisi.split(",")
 
     const myData = {
         "nim" : InputNPM,
         "tahun_aka" : InputTahun,
+        "tipe" : InputTipeBimbingan,
         "revisi" : split
     };
 
     console.log(myData);
 
-    fetch("https://kimteungbim.ulbi.ac.id/public/revisi/", {
+    // Pengkondisian endpoint
+    let url = ""
+    if (InputTipeBimbingan != "p3"){
+        url = "https://kimteungbim.ulbi.ac.id/revisi/"
+      } else {
+        url = "https://kimteungbim.ulbi.ac.id/sidang/p3/revisi/"
+      }
+
+    fetch(url, {
         method : "POST",
         headers: header,
         body : JSON.stringify(myData)
@@ -74,18 +85,18 @@ function SubmitPendaftaranSidangP3() {
             Swal.fire({
                 icon : 'success',
                 title : 'Sukses!',
-                text : 'Pendaftaran Sidang Proyek 3 Berhasil Disubmit',
+                text : 'Input Revisi Sidang Proyek 3 Berhasil Disubmit',
                 showConfirmButton : false,
                 timer : 1500
             })
             .then(() => {
-                window.location.href = 'success_daftarp3.html';
+                window.location.href = 'revisi_sidang.html';
             })
         } else {
             Swal.fire({
                 icon : 'error',
                 title : 'Oops...',
-                text : 'Pendaftaran Sidang Proyek 3 Gagal Disubmit'
+                text : 'Input Revisi Sidang Proyek 3 Gagal Disubmit'
             })
         }
     })
