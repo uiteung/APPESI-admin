@@ -4,7 +4,7 @@ import { token } from "./controller/cookies.js";
 
 var header = new Headers();
 // header.append("AUTH", token);
-header.append("AUTH", token)
+header.append("LOGIN", token)
 header.append("Content-Type", "application/json");
 
 // Event listener for form submission
