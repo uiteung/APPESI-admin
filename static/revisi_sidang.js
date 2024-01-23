@@ -40,7 +40,14 @@ document.addEventListener("DOMContentLoaded", function() {
   
       postWithToken(url, "LOGIN", token,  data, (results) => {
         // Handle results for the second action
-        alert(results.status)
+        // alert(results.status)
+        Swal.fire({
+            icon : 'success',
+            title : 'Sukses!',
+            text : results.status,
+            showConfirmButton : false,
+            timer : 1500
+        })
       });
     });
 })  
