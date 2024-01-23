@@ -20,7 +20,7 @@ form.addEventListener('submit', (event) => {
     const InputRevisi = getValue('inputRevisi');
 
     // Check if all required fields are filled
-    if (!InputTahun || !InputNPM || InputTipeBimbingan || !InputRevisi) {
+    if (!InputTahun || !InputNPM || !InputTipeBimbingan || !InputRevisi) {
         Swal.fire({
             icon: 'warning',
             title: 'Oops...',
