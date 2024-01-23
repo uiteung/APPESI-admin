@@ -1,11 +1,13 @@
 // Import library dan function yang dibutukan
-import { getValue } from "https://cdn.jsdelivr.net/gh/jscroot/element@0.0.5/croot.js";
+import { postWithToken } from "https://jscroot.github.io/api/croot.js";
+import { getCookie } from "https://jscroot.github.io/cookie/croot.js";
+import { getValue } from "https://jscroot.github.io/element/croot.js";
 import { token } from "./controller/cookies.js";
 
-var header = new Headers();
-// header.append("AUTH", token);
-header.append("LOGIN", token)
-header.append("Content-Type", "application/json");
+let token = getCookie("login")
+if (token == "") {
+    window.location.href("https://euis.ulbi.ac.id/")
+}
 
 // Event listener for form submission
 const form = document.querySelector('#form');
