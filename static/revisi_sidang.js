@@ -8,7 +8,7 @@ header.append("AUTH", token)
 header.append("Content-Type", "application/json");
 
 // Event listener for form submission
-const form = document.querySelector('form');
+const form = document.querySelector('#form');
 form.addEventListener('submit', (event) => {
     // Prevent the default form submission behavior
     event.preventDefault();
