@@ -40,7 +40,23 @@ document.addEventListener("DOMContentLoaded", function() {
   
       postWithToken(url, "LOGIN", token,  data, (results) => {
         // Handle results for the second action
-        alert(results.status)
+        if (results.status === "success") {
+            Swal.fire({
+                icon: 'success',
+                title: 'Sukses!',
+                text: "Input Revisi Sidang Berhasil Disubmit",
+                showConfirmButton: false,
+                timer: 1500
+            }).then(() => {
+                window.location.href = 'revisi_sidang.html';
+            });
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: "Input Revisi Sidang Gagal Disubmit"
+            });
+        }
       });
     });
 })  
