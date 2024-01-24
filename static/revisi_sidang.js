@@ -15,8 +15,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Use SweetAlert for confirmation
         Swal.fire({
-            title: 'Confirmation',
-            text: 'Are you sure you want to submit the form?',
+            title: 'Revisi Sidang',
+            text: 'Apakah anda yakin ingin input Revisi Sidang?',
             icon: 'question',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -43,13 +43,13 @@ document.addEventListener("DOMContentLoaded", function () {
             url = "https://kimteungbim.ulbi.ac.id/sidang/p3/revisi/"
         }
 
-        let split = InputRevisi.split(",")
+        // let split = InputRevisi.split(",")
 
         let data = {
             "nim": InputNPM,
             "tahun_aka": InputTahun,
             "tipe": InputTipeBimbingan,
-            "revisi": split
+            "revisi": InputRevisi
         };
 
         console.log(data);
