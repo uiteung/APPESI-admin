@@ -2,7 +2,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     // Dapatkan elemen-elemen yang dibutuhkan
     var inputNPM = document.getElementById("inputNPM");
-    var inputTahunAkademik = document.getElementById("inputTahunAkademik");
+    // var inputTahunAkademik = document.getElementById("inputTahunAkademik");
     var poin1 = document.getElementById("poin1");
     var poin2 = document.getElementById("poin2");
     var poin3 = document.getElementById("poin3");
@@ -16,10 +16,10 @@ document.addEventListener("DOMContentLoaded", function () {
       inputNPM.value = inputNPM.value.replace(/\D/g, "");
     });
     
-    inputTahunAkademik.addEventListener("input", function () {
-      // Hapus karakter non-angka dari nilai input
-      inputTahunAkademik.value = inputTahunAkademik.value.replace(/\D/g, "");
-    });
+    // inputTahunAkademik.addEventListener("input", function () {
+    //   // Hapus karakter non-angka dari nilai input
+    //   inputTahunAkademik.value = inputTahunAkademik.value.replace(/\D/g, "");
+    // });
     
     poin1.addEventListener("input", function () {
       // Hapus karakter non-angka dari nilai input
