@@ -82,6 +82,7 @@ function SubmitNilaiI1() {
       console.log(data);
   
       postWithToken(url, "LOGIN", token,  data, (results) => {
+        console.log(results);
         // Handle results for the second action
         if (results.status === 'success') {
             Swal.fire({
@@ -97,4 +98,5 @@ function SubmitNilaiI1() {
             });
         }
       });
+    
 }
