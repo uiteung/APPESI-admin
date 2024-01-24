@@ -8,57 +8,40 @@ if (token == "") {
 }
 
 // Penilaian BackEnd Proyek 3
-// Form Validation BackEnd Proyek 3
-const formValidateBE = document.querySelector('formInputBE');
-formValidateBE.addEventListener('submit', (event) => {
-    event.preventDefault();
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("formInputBE");
 
-    const inputNPMBE = getValue('inputNPMBE');
-    const inputTahunAkademikBE = getValue('inputTahunAkademikBE');
-    const inputNilaiBE1 = getValue('inputNilaiBE1');
-    const inputNilaiBE2 = getValue('inputNilaiBE2');
-    const inputNilaiBE3 = getValue('inputNilaiBE3');
-    const inputNilaiBE4 = getValue('inputNilaiBE4');
+    form.addEventListener("submit", function(event) {
+        event.preventDefault();
 
-    if (!inputNPMBE || !inputTahunAkademikBE || !inputNilaiBE1 || !inputNilaiBE2 || !inputNilaiBE3 || !inputNilaiBE4) {
         Swal.fire({
-            icon: 'warning',
-            title: 'Oops...',
-            text: 'Semua Field Harus Diisi',
+            title : 'Input Nilai Sidang Proyek 3',
+            text: 'Apakah anda yakin ingin input Nilai Sidang Proyek 3?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Submit'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Continue with form submission
+                SubmitNilaiBackEndP3();
+            }
         });
-        return;
-    }
+    });
+    // Untuk Submit Nilai BackEnd
+    function SubmitNilaiBackEndP3() {
+        const inputNPMBE = getValue('inputNPMBE');
+        const inputTahunAkademikBE = getValue('inputTahunAkademikBE');
+        const InputTipe = "p3";
+        const inputNilaiBE1 = getValue('inputNilaiBE1');
+        const inputNilaiBE2 = getValue('inputNilaiBE2');
+        const inputNilaiBE3 = getValue('inputNilaiBE3');
+        const inputNilaiBE4 = getValue('inputNilaiBE4');
 
-    // Alert konfirmasi
-    Swal.fire({
-        title: 'Input Penilaian Sidang Proyek 3?',
-        text: 'Apakah anda yakin ingin input penilaian sidang proyek 3?',
-        icon: 'question',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes',
-        cancelButtonText: 'No',
-    })
-}).then((result) => {
-    if (result.isConfirmed) {
-        SubmitNilaiBackEndP3();
-    }
-})
+        let url = "https://kimteungbim.ulbi.ac.id/sidang/p3/nilai/"
 
-// Untuk Submit Nilai BackEnd
-function SubmitNilaiBackEndP3() {
-      const inputNPMBE = getValue('inputNPMBE');
-      const inputTahunAkademikBE = getValue('inputTahunAkademikBE');
-      const InputTipe = "p3";
-      const inputNilaiBE1 = getValue('inputNilaiBE1');
-      const inputNilaiBE2 = getValue('inputNilaiBE2');
-      const inputNilaiBE3 = getValue('inputNilaiBE3');
-      const inputNilaiBE4 = getValue('inputNilaiBE4');
-
-      let url = "https://kimteungbim.ulbi.ac.id/sidang/p3/nilai/"
-
-      let data = {
+        let data = {
         "prodi" : 14,
         "nim" : parseInt(inputNPMBE),
         "tahun_aka" : inputTahunAkademikBE,
@@ -71,14 +54,18 @@ function SubmitNilaiBackEndP3() {
         ]
     };
 
-      postWithToken(url, "LOGIN", token,  data, (results) => {
+        postWithToken(url, "LOGIN", token,  data, (results) => {
         // Handle results for the second action
-        if (results.status === 'success') {
+        if (results.success) {
             Swal.fire({
                 icon: 'success',
                 title: 'Success',
-                text: 'Penilaian Sidang Proyek 3 berhasil disubmit!',
-            });
+                text: results.status,
+                showConfirmButton: false,
+                timer: 1500
+            }).then(() => {
+                window.location.href = 'input_nilai_p3.html';
+            })
         } else {
             Swal.fire({
                 icon: 'error',
@@ -86,62 +73,48 @@ function SubmitNilaiBackEndP3() {
                 text: 'Gagal submit penilaian. Silakan coba lagi.',
             });
         }
-      });
-};
+        });
+    };
+})
 
 
 // Penilaian FrontEnd Proyek 3
-// Form Validation FrontEnd Proyek 3
-const formValidateFE = document.querySelector('formInputFE');
-formValidateFE.addEventListener('submit', (event) => {
-    event.preventDefault();
+document.addEventListener("DOMContentLoaded", function() {
+    const form = document.getElementById("formInputFE");
 
-    const inputNPMFE = getValue('inputNPMFE');
-    const inputTahunAkademikFE = getValue('inputTahunAkademikFE');
-    const inputNilaiFE1 = getValue('inputNilaiFE1');
-    const inputNilaiFE2 = getValue('inputNilaiFE2');
-    const inputNilaiFE3 = getValue('inputNilaiFE3');
-    const inputNilaiFE4 = getValue('inputNilaiFE4');
+    form.addEventListener("submit", function (event) {
+        event.preventDefault();
 
-    if (!inputNPMFE || !inputTahunAkademikFE || !inputNilaiFE1 || !inputNilaiFE2 || !inputNilaiFE3 || !inputNilaiFE4) {
+        // Use SweetAlert for confirmation
         Swal.fire({
-            icon: 'warning',
-            title: 'Oops...',
-            text: 'Semua Field Harus Diisi',
+            title: 'Input Nilai Sidang Internship 1',
+            text: 'Apakah anda yakin ingin input Nilai Sidang Internship 1?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Submit'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Continue with form submission
+                SubmitNilaiFrontEndP3();
+            }
         });
-        return;
-    }
+    });
 
-    // Alert konfirmasi
-    Swal.fire({
-        title: 'Input Penilaian Sidang Proyek 3?',
-        text: 'Apakah anda yakin ingin input penilaian sidang proyek 3?',
-        icon: 'question',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes',
-        cancelButtonText: 'No',
-    })
-}).then((result) => {
-    if (result.isConfirmed) {
-        SubmitNilaiFrontEndP3();
-    }
-})
+    // Untuk Submit Nilai FrontEnd
+    function SubmitNilaiFrontEndP3() {
+        const inputNPMFE = getValue('inputNPMFE');
+        const inputTahunAkademikFE = getValue('inputTahunAkademikFE');
+        const InputTipe = "p3";
+        const inputNilaiFE1 = getValue('inputNilaiFE1');
+        const inputNilaiFE2 = getValue('inputNilaiFE2');
+        const inputNilaiFE3 = getValue('inputNilaiFE3');
+        const inputNilaiFE4 = getValue('inputNilaiFE4');
 
-// Untuk Submit Nilai FrontEnd
-function SubmitNilaiFrontEndP3() {
-      const inputNPMFE = getValue('inputNPMFE');
-      const inputTahunAkademikFE = getValue('inputTahunAkademikFE');
-      const InputTipe = "p3";
-      const inputNilaiFE1 = getValue('inputNilaiFE1');
-      const inputNilaiFE2 = getValue('inputNilaiFE2');
-      const inputNilaiFE3 = getValue('inputNilaiFE3');
-      const inputNilaiFE4 = getValue('inputNilaiFE4');
+        let url = "https://kimteungbim.ulbi.ac.id/sidang/p3/nilai/"
 
-      let url = "https://kimteungbim.ulbi.ac.id/sidang/p3/nilai/"
-
-      let data = {
+        let data = {
         "prodi" : 14,
         "nim" : parseInt(inputNPMFE),
         "tahun_aka" : inputTahunAkademikFE,
@@ -153,15 +126,19 @@ function SubmitNilaiFrontEndP3() {
             {"assess_name" : "memakai custom domain pada github pages nya.", "assess_weight": 25, "value" : parseInt(inputNilaiFE4)},
         ]
     };
-  
-      postWithToken(url, "LOGIN", token,  data, (results) => {
+
+        postWithToken(url, "LOGIN", token,  data, (results) => {
         // Handle results for the second action
-        if (results.status === 'success') {
+        if (results.success) {
             Swal.fire({
                 icon: 'success',
                 title: 'Success',
-                text: 'Penilaian Sidang Proyek 3 berhasil disubmit!',
-            });
+                text: results.status,
+                showConfirmButton: false,
+                timer: 1500
+            }).then(() => {
+                window.location.href = 'input_nilai_p3.html';
+            })
         } else {
             Swal.fire({
                 icon: 'error',
@@ -169,8 +146,12 @@ function SubmitNilaiFrontEndP3() {
                 text: 'Gagal submit penilaian. Silakan coba lagi.',
             });
         }
-    });
-};
+      });
+    };
+})
+
+
+
 // function responsesdata(value) {
 //     console.log(value)
 // }
