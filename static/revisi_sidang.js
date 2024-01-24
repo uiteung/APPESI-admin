@@ -48,6 +48,8 @@ document.addEventListener("DOMContentLoaded", function() {
             text : results.status,
             showConfirmButton : false,
             timer : 1500
+        }).then(() => {
+          window.location.href = 'revisi_sidang.html';
         })
       });
     });
