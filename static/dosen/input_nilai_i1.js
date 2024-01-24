@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function() {
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Submit!'
+            confirmButtonText: 'Submit'
         }).then((result) => {
             if (result.isConfirmed) {
                 // Continue with form submission
