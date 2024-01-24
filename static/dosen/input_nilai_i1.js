@@ -8,47 +8,30 @@ if (token == "") {
 }
 
 // Penilaian Internship 1
-// Form Validation Internship 1
-const formValidate = document.querySelector('form');
-formValidate.addEventListener('submit', (event) => {
-    event.preventDefault();
+document.addEventListener("DOMContentLoaded", function() {
+    const form = document.getElementById("form");
 
-    const inputNPM = getValue('inputNPM');
-    const inputTahunAkademik = getValue('inputTahunAkademik');
-    const poin1 = getValue('poin1');
-    const poin2 = getValue('poin2');
-    const poin3 = getValue('poin3');
-    const poin4 = getValue('poin4');
-    const poin5 = getValue('poin5');
-    const poin6 = getValue('poin6');
-    const poin7 = getValue('poin7');
+    form.addEventListener("submit", function (event) {
+        event.preventDefault();
 
-    if (!inputNPM || !inputTahunAkademik || !poin1 || !poin2 || !poin3 || !poin4 || !poin5 || !poin6 || !poin7) {
+        // Use SweetAlert for confirmation
         Swal.fire({
-            icon : 'warning',
-            title : 'Oops...',
-            text : 'Semua Field Harus Diisi',
+            title: 'Input Nilai Sidang Internship 1',
+            text: 'Apakah anda yakin ingin input Nilai Sidang Internship 1?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Submit!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Continue with form submission
+                SubmitNilaiI1();
+            }
         });
-        return;
-    }
+    });
 
-    Swal.fire({
-        title: 'Input Penilaian Sidang Internship 3?',
-        text: 'Apakah anda yakin ingin input penilaian sidang internship 3?',
-        icon: 'question',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes',
-        cancelButtonText: 'No',
-    })
-}).then((result) => {
-    if (result.isConfirmed) {
-        SubmitNilaiI1();
-    }
-})
-
-// Untuk Submit Nilai Internship 1
+    // Untuk Submit Nilai Internship 1
 function SubmitNilaiI1() {
     const inputNPM = getValue('inputNPM');
     const inputTahunAkademik = getValue('inputTahunAkademik');
@@ -88,15 +71,19 @@ function SubmitNilaiI1() {
             Swal.fire({
                 icon: 'success',
                 title: 'Success',
-                text: 'Penilaian Sidang Proyek 3 berhasil disubmit!',
-            });
+                text: results.status,
+                showConfirmButton: false,
+                timer: 1500
+            }).then(() => {
+                window.location.href = 'input_nilai_i1.html';
+            })
         } else {
             Swal.fire({
                 icon: 'error',
                 title: 'Error',
-                text: 'Gagal submit penilaian. Silakan coba lagi.',
+                text: results.error_message || 'Failed to submit the form.',
             });
         }
       });
-    
-}
+    }
+});
