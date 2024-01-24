@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
             // Handle results for the second action
             // alert(results.status)
             console.log(results);
-            if (results.status === "success") {
+            if (results.success) {
                 Swal.fire({
                     icon: 'success',
                     title: 'Sukses!',
