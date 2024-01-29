@@ -5,3 +5,4 @@ export let UrlGetAllPersyaratan = "https://p3-be.ulbi.ac.id/api/sidang/syarat/al
 
 // Endpoint POST
 export let UrlPostPendaftaranSidangP3 = "https://p3-be.ulbi.ac.id/api/sidang/syarat";
+export let UrlPostRevisi = "https://kimteungbim.ulbi.ac.id/revisi/";
