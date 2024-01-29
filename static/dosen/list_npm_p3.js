@@ -66,6 +66,7 @@ CihuyDomReady(() => {
             });
             // Tampilkan data pegawai ke dalam tabel
             document.getElementById("inputNPMBE").innerHTML = tableData;
+            document.getElementById("inputNPMFE").innerHTML = tableData;
     
             // Untuk Memunculkan Pagination Halamannya
             displayData(halamannow);
