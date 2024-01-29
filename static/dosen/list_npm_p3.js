@@ -59,7 +59,7 @@ CihuyDomReady(() => {
                     // Your existing mapping logic here
                     tableData += `
                     <option value="${values.npm_1}">${values.npm_1}</option>
-                    <option value="${values.npm_2}">${values.npm_2}</option>
+                    <option value="${values.npm2}">${values.npm2}</option>
                     `
                     ;
                 }
