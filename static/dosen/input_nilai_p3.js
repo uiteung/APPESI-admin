@@ -87,8 +87,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Use SweetAlert for confirmation
         Swal.fire({
-            title: 'Input Nilai Sidang Internship 1',
-            text: 'Apakah anda yakin ingin input Nilai Sidang Internship 1?',
+            title: 'Input Nilai Sidang Proyek 3',
+            text: 'Apakah anda yakin ingin input Nilai Sidang Proyek 3?',
             icon: 'question',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
