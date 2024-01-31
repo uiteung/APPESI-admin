@@ -63,4 +63,24 @@ document.addEventListener("DOMContentLoaded", function () {
         // Hapus karakter non-angka dari nilai input
         inputNilaiFE4.value = inputNilaiFE4.value.replace(/\D/g, "");
     });
-  });
+});
+
+// Untuk Ubah Style Form
+// Menangkap elemen select
+var selectPosisiAnggota2 = document.getElementById('selectPosisiAnggota2');
+
+// Menangkap elemen judul form
+var titleForm = document.getElementById('titleForm');
+
+// Menambahkan event listener untuk mendeteksi perubahan pada elemen select
+selectPosisiAnggota2.addEventListener('change', function() {
+  // Memperbarui judul form berdasarkan pilihan yang dipilih
+  if (selectPosisiAnggota2.value === 'Frontend') {
+    titleForm.innerText = 'Penilaian Frontend Developer';
+  } else if (selectPosisiAnggota2.value === 'Backend') {
+    titleForm.innerText = 'Penilaian Backend Developer';
+  } else {
+    // Default jika tidak ada pilihan yang dipilih
+    titleForm.innerText = 'Penilaian Developer';
+  }
+});
