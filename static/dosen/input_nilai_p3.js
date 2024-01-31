@@ -9,7 +9,7 @@ if (token == "") {
 
 // Penilaian BackEnd Proyek 3
 document.addEventListener("DOMContentLoaded", function () {
-    const form = document.getElementById("formInput");
+    const form = document.getElementById("formInputBE");
 
     form.addEventListener("submit", function(event) {
         event.preventDefault();
