@@ -65,45 +65,14 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-  // Menangkap elemen select
-  var selectPosisiAnggota2 = document.getElementById('selectPosisiAnggota2');
-  var titleForm = document.getElementById('titleForm');
-  var labelNilai1 = document.getElementById('labelNilai1');
-  var labelNilai2 = document.getElementById('labelNilai2');
-  var labelNilai3 = document.getElementById('labelNilai3');
-  var labelNilai4 = document.getElementById('labelNilai4');
+document.getElementById('selectPosisiAnggota2').addEventListener('change', function() {
+  var selectedValue = this.value;
 
-  // Menambahkan event listener untuk mendeteksi perubahan pada elemen select
-  selectPosisiAnggota2.addEventListener('change', function() {
-    // Memperbarui judul form berdasarkan pilihan yang dipilih
-    if (selectPosisiAnggota2.value === 'Frontend') {
-      titleForm.innerText = 'Penilaian Frontend Developer';
-      labelNilai1.innerText = 'Semua JS Dirilis Versi di JSDelivr dari Semua JS Buatan Sendiri yang Dipakai Frontend';
-      labelNilai2.innerText = 'Pemanggilan JSDelivr Pada HTML yang Sudah Pasti Pakai Type Module';
-      labelNilai3.innerText = 'Kelengkapan CSS, Favicon, 404.html, Modal, Transisi, Loading, Responsive dan Hasil Analisis dari gtmetrix.com';
-      labelNilai4.innerText = 'Memakai Custom Domain pada GitHub Pages nya';
-
-      // Mengganti ID dan placeholder untuk input nilai sesuai dengan Frontend
-      document.getElementById('inputNilaiBE1').id = 'inputNilaiFE1';
-      document.getElementById('inputNilaiBE2').id = 'inputNilaiFE2';
-      document.getElementById('inputNilaiBE3').id = 'inputNilaiFE3';
-      document.getElementById('inputNilaiBE4').id = 'inputNilaiFE4';
-
-    } 
-    // else {
-    //   // Default jika tidak ada pilihan yang dipilih
-    //   titleForm.innerText = 'Penilaian Developer';
-    //   labelNilai1.innerText = 'Semua Endpoint Berfungsi Termasuk Otorisasi dan Autentikasi Token';
-    //   labelNilai2.innerText = 'Package Dibuat Sendiri dan Semua Digunakan';
-    //   labelNilai3.innerText = 'Semua Endpoint di GCF Memakai Package yang Dibuat dan Lokasi Server di Jakarta';
-    //   labelNilai4.innerText = 'Terintegrasi dengan wa.my.id';
-
-    //   // Mengganti ID dan placeholder untuk input nilai sesuai dengan default
-    //   document.getElementById('inputNilaiFE1').id = 'inputNilaiBE1';
-    //   document.getElementById('inputNilaiFE2').id = 'inputNilaiBE2';
-    //   document.getElementById('inputNilaiFE3').id = 'inputNilaiBE3';
-    //   document.getElementById('inputNilaiFE4').id = 'inputNilaiBE4';
-    // }
-  });
+  if (selectedValue === 'Frontend') {
+    document.getElementById('formInputBE').style.display = 'none';
+    document.getElementById('formInputFE').style.display = 'block';
+  } else if (selectedValue === 'Backend') {
+    document.getElementById('formInputBE').style.display = 'block';
+    document.getElementById('formInputFE').style.display = 'none';
+  }
 });
