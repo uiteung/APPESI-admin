@@ -31,8 +31,8 @@ document.addEventListener("DOMContentLoaded", function () {
     });
     // Untuk Submit Nilai BackEnd
     function SubmitNilaiBackEndP3() {
-        const inputNPMBE = getValue('inputNPMBE');
-        const inputTahunAkademikBE = getValue('inputTahunAkademikBE');
+        const inputNPM = getValue('inputNPM');
+        const inputTahunAkademik = getValue('inputTahunAkademik');
         const InputTipe = "p3";
         const inputNilaiBE1 = getValue('inputNilaiBE1');
         const inputNilaiBE2 = getValue('inputNilaiBE2');
@@ -43,8 +43,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
         let data = {
         "prodi" : 14,
-        "nim" : parseInt(inputNPMBE),
-        "tahun_aka" : inputTahunAkademikBE,
+        "nim" : parseInt(inputNPM),
+        "tahun_aka" : inputTahunAkademik,
         "tipe_bimbingan" : InputTipe,
         "assessment_inputs" : [
             {"assess_name" : "Semua endpoint berfungsi termasuk otorisasi dan autentikasi token", "assess_weight": 25, "value" : parseInt(inputNilaiBE1)},
@@ -104,8 +104,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Untuk Submit Nilai FrontEnd
     function SubmitNilaiFrontEndP3() {
-        const inputNPMFE = getValue('inputNPMFE');
-        const inputTahunAkademikFE = getValue('inputTahunAkademikFE');
+        const inputNPM = getValue('inputNPM');
+        const inputTahunAkademik = getValue('inputTahunAkademik');
         const InputTipe = "p3";
         const inputNilaiFE1 = getValue('inputNilaiFE1');
         const inputNilaiFE2 = getValue('inputNilaiFE2');
@@ -116,8 +116,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
         let data = {
         "prodi" : 14,
-        "nim" : parseInt(inputNPMFE),
-        "tahun_aka" : inputTahunAkademikFE,
+        "nim" : parseInt(inputNPM),
+        "tahun_aka" : inputTahunAkademik,
         "tipe_bimbingan" : InputTipe,
         "assessment_inputs" : [
             {"assess_name" : "semua js di rilis versi di jsdelivr dari semua js buatan sendiri yang dipakai frontend", "assess_weight": 25, "value" : parseInt(inputNilaiFE1)},
