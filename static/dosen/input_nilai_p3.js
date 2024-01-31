@@ -9,7 +9,7 @@ if (token == "") {
 
 // Penilaian BackEnd Proyek 3
 document.addEventListener("DOMContentLoaded", function () {
-    const form = document.getElementById("formInputBE");
+    const form = document.getElementById("formInput");
 
     form.addEventListener("submit", function(event) {
         event.preventDefault();
@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Penilaian FrontEnd Proyek 3
 document.addEventListener("DOMContentLoaded", function() {
-    const form = document.getElementById("formInputBE");
+    const form = document.getElementById("formInput");
 
     form.addEventListener("submit", function (event) {
         event.preventDefault();

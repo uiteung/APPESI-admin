@@ -89,13 +89,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
       // Mengganti ID dan placeholder untuk input nilai sesuai dengan Frontend
       document.getElementById('inputNilaiBE1').id = 'inputNilaiFE1';
-      document.getElementById('inputNilaiFE1').placeholder = 'Inputkan Nilai dari Rentang 0 sampai 100';
       document.getElementById('inputNilaiBE2').id = 'inputNilaiFE2';
-      document.getElementById('inputNilaiFE2').placeholder = 'Inputkan Nilai dari Rentang 0 sampai 100';
       document.getElementById('inputNilaiBE3').id = 'inputNilaiFE3';
-      document.getElementById('inputNilaiFE3').placeholder = 'Inputkan Nilai dari Rentang 0 sampai 100';
       document.getElementById('inputNilaiBE4').id = 'inputNilaiFE4';
-      document.getElementById('inputNilaiFE4').placeholder = 'Inputkan Nilai dari Rentang 0 sampai 100';
 
     } else if (selectPosisiAnggota2.value === 'Backend') {
       titleForm.innerText = 'Penilaian Backend Developer';
@@ -107,13 +103,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
       // Mengganti ID dan placeholder untuk input nilai sesuai dengan Backend
       document.getElementById('inputNilaiFE1').id = 'inputNilaiBE1';
-      document.getElementById('inputNilaiBE1').placeholder = 'Inputkan Nilai dari Rentang 0 sampai 100';
       document.getElementById('inputNilaiFE2').id = 'inputNilaiBE2';
-      document.getElementById('inputNilaiBE2').placeholder = 'Inputkan Nilai dari Rentang 0 sampai 100';
       document.getElementById('inputNilaiFE3').id = 'inputNilaiBE3';
-      document.getElementById('inputNilaiBE3').placeholder = 'Inputkan Nilai dari Rentang 0 sampai 100';
       document.getElementById('inputNilaiFE4').id = 'inputNilaiBE4';
-      document.getElementById('inputNilaiFE4').placeholder = 'Inputkan Nilai dari Rentang 0 sampai 100';
+
     } else {
       // Default jika tidak ada pilihan yang dipilih
       titleForm.innerText = 'Penilaian Developer';
@@ -125,13 +118,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
       // Mengganti ID dan placeholder untuk input nilai sesuai dengan default
       document.getElementById('inputNilaiFE1').id = 'inputNilaiBE1';
-      document.getElementById('inputNilaiBE1').placeholder = 'Inputkan Nilai dari Rentang 0 sampai 100';
       document.getElementById('inputNilaiFE2').id = 'inputNilaiBE2';
-      document.getElementById('inputNilaiBE2').placeholder = 'Inputkan Nilai dari Rentang 0 sampai 100';
       document.getElementById('inputNilaiFE3').id = 'inputNilaiBE3';
-      document.getElementById('inputNilaiBE3').placeholder = 'Inputkan Nilai dari Rentang 0 sampai 100';
       document.getElementById('inputNilaiFE4').id = 'inputNilaiBE4';
-      document.getElementById('inputNilaiBE4').placeholder = 'Inputkan Nilai dari Rentang 0 sampai 100';
     }
   });
 });
