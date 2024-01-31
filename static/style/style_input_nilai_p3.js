@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', function() {
       labelNilai1.innerText = 'Semua Endpoint Berfungsi Termasuk Otorisasi dan Autentikasi Token';
       labelNilai2.innerText = 'Package Dibuat Sendiri dan Semua Digunakan';
       labelNilai3.innerText = 'Semua Endpoint di GCF Memakai Package yang Dibuat dan Lokasi Server di Jakarta';
-      labelNilai4.innerText = 'Terintegrasi dengan wa.my.id';
+      labelNilai4.innerText = 'Terintegrasi dengan <a href="">wa.my.id</a>';
 
       // Mengganti ID dan placeholder untuk input nilai sesuai dengan Backend
       document.getElementById('inputNilaiFE1').id = 'inputNilaiBE1';
@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', function() {
       labelNilai1.innerText = 'Semua Endpoint Berfungsi Termasuk Otorisasi dan Autentikasi Token';
       labelNilai2.innerText = 'Package Dibuat Sendiri dan Semua Digunakan';
       labelNilai3.innerText = 'Semua Endpoint di GCF Memakai Package yang Dibuat dan Lokasi Server di Jakarta';
-      labelNilai4.innerText = 'Terintegrasi dengan wa.my.id';
+      labelNilai4.innerText = 'Terintegrasi dengan <a href="">wa.my.id</a>';
 
       // Mengganti ID dan placeholder untuk input nilai sesuai dengan default
       document.getElementById('inputNilaiFE1').id = 'inputNilaiBE1';
