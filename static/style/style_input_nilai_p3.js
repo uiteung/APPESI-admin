@@ -66,7 +66,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener('DOMContentLoaded', function() {
-  // Untuk Ubah Style Form
   // Menangkap elemen select
   var selectPosisiAnggota2 = document.getElementById('selectPosisiAnggota2');
   var titleForm = document.getElementById('titleForm');
