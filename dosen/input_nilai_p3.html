@@ -216,7 +216,7 @@
                     <div class="card">
                         <div class="card-body">
                             <form id="formInputBE">
-                                <h5 class="card-title fw-semibold mb-4">Penilaian Backend Developer</h5>
+                                <h5 class="card-title fw-semibold mb-4" id="titleForm">Penilaian Backend Developer</h5>
                                 <div class="row">
                                   <!-- NPM -->
                                   <div class="col-md-6">
@@ -232,6 +232,17 @@
                                         <input type="text" class="form-control" id="inputTahunAkademikBE" placeholder="Masukkan Tahun Akademik">
                                         <div id="textHelp" class="form-text">*contoh : 2023-2024</div>
                                       </div>
+                                  </div>
+                                </div>
+                                <!-- Posisi -->
+                                <div class="col">
+                                  <div class="mb-3">
+                                    <label for="selectPosisiAnggota2" class="form-label">Posisi</label>
+                                    <select class="form-select" id="selectPosisiAnggota2">
+                                      <option value="">Masukkan Posisi</option>
+                                      <option value="Frontend">Frontend</option>
+                                      <option value="Backend">Backend</option>
+                                    </select>
                                   </div>
                                 </div>
                                 <!-- Semua Endpoint Berfungsi Termasuk Otorisasi dan Autentikasi Token -->
@@ -259,23 +270,6 @@
                             <hr class="mt-4">
                             <form id="formInputFE">
                                 <h5 class="card-title fw-semibold mb-4 mt-4">Penilaian Front End Developer</h5>
-                                <div class="row">
-                                  <!-- NPM -->
-                                  <div class="col-md-6">
-                                    <div class="mb-3">
-                                      <label for="inputNPMFE" class="form-label">NPM</label>
-                                      <input type="text" class="form-control" id="inputNPMFE" placeholder="Masukkan NPM">
-                                    </div>
-                                  </div>
-                                  <!-- Tahun Akademik -->
-                                  <div class="col-md-6">
-                                      <div class="mb-3">
-                                        <label for="inputTahunAkademikFE" class="form-label">Tahun Akademik</label>
-                                        <input type="text" class="form-control" id="inputTahunAkademikFE" placeholder="Masukkan Tahun Akademik">
-                                        <div id="textHelp" class="form-text">*contoh : 2023-2024</div>
-                                      </div>
-                                  </div>
-                                </div>
                                 <!-- Semua JS Dirilis Versi di JSDelivr dari Semua JS Buatan Sendiri yang Dipakai Frontend -->
                                 <div class="mb-3">
                                   <label for="inputNilaiFE1" class="form-label">Semua JS Dirilis Versi di JSDelivr dari Semua JS Buatan Sendiri yang Dipakai Frontend</label>
