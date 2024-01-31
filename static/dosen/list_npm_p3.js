@@ -1,7 +1,7 @@
 // Import library yang dibutuhkan
 import { CihuyDomReady, CihuyQuerySelector } from "https://c-craftjs.github.io/table/table.js";
 import { CihuyId } from "https://c-craftjs.github.io/element/element.js";
-import { UrlGetAllPersyaratan } from "../controller/template.js";
+import { UrlGetPersyaratanByNIDN } from "../controller/template.js";
 import { token } from "../controller/cookies.js";
 
 // Get Data Program Studi
@@ -22,7 +22,7 @@ CihuyDomReady(() => {
     };
 
     // Untuk Get All Data Pendaftar
-    fetch(UrlGetAllPersyaratan, requestOptions)
+    fetch(UrlGetPersyaratanByNIDN, requestOptions)
     .then((result) => {
     return result.json();
     })
