@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Penilaian FrontEnd Proyek 3
 document.addEventListener("DOMContentLoaded", function() {
-    const form = document.getElementById("formInputFE");
+    const form = document.getElementById("formInputBE");
 
     form.addEventListener("submit", function (event) {
         event.preventDefault();
