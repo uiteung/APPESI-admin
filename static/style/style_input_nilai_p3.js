@@ -70,6 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Menangkap elemen select
   var selectPosisiAnggota2 = document.getElementById('selectPosisiAnggota2');
   var titleForm = document.getElementById('titleForm');
+  var formInput = document.getElementById('formInputBE')
   var labelNilai1 = document.getElementById('labelNilai1');
   var labelNilai2 = document.getElementById('labelNilai2');
   var labelNilai3 = document.getElementById('labelNilai3');
@@ -80,6 +81,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Memperbarui judul form berdasarkan pilihan yang dipilih
     if (selectPosisiAnggota2.value === 'Frontend') {
       titleForm.innerText = 'Penilaian Frontend Developer';
+      formInput.id = 'formInputFE';
       labelNilai1.innerText = 'Semua JS Dirilis Versi di JSDelivr dari Semua JS Buatan Sendiri yang Dipakai Frontend';
       labelNilai2.innerText = 'Pemanggilan JSDelivr Pada HTML yang Sudah Pasti Pakai Type Module';
       labelNilai3.innerText = 'Kelengkapan CSS, Favicon, 404.html, Modal, Transisi, Loading, Responsive dan Hasil Analisis dari gtmetrix.com';
@@ -97,10 +99,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     } else if (selectPosisiAnggota2.value === 'Backend') {
       titleForm.innerText = 'Penilaian Backend Developer';
+      formInput.id = 'formInputBE';
       labelNilai1.innerText = 'Semua Endpoint Berfungsi Termasuk Otorisasi dan Autentikasi Token';
       labelNilai2.innerText = 'Package Dibuat Sendiri dan Semua Digunakan';
       labelNilai3.innerText = 'Semua Endpoint di GCF Memakai Package yang Dibuat dan Lokasi Server di Jakarta';
-      labelNilai4.innerText = 'Terintegrasi dengan <a href="">wa.my.id</a>';
+      labelNilai4.innerText = 'Terintegrasi dengan wa.my.id';
 
       // Mengganti ID dan placeholder untuk input nilai sesuai dengan Backend
       document.getElementById('inputNilaiFE1').id = 'inputNilaiBE1';
@@ -114,10 +117,11 @@ document.addEventListener('DOMContentLoaded', function() {
     } else {
       // Default jika tidak ada pilihan yang dipilih
       titleForm.innerText = 'Penilaian Developer';
+      formInput.id = 'formInputBE';
       labelNilai1.innerText = 'Semua Endpoint Berfungsi Termasuk Otorisasi dan Autentikasi Token';
       labelNilai2.innerText = 'Package Dibuat Sendiri dan Semua Digunakan';
       labelNilai3.innerText = 'Semua Endpoint di GCF Memakai Package yang Dibuat dan Lokasi Server di Jakarta';
-      labelNilai4.innerText = 'Terintegrasi dengan <a href="">wa.my.id</a>';
+      labelNilai4.innerText = 'Terintegrasi dengan wa.my.id';
 
       // Mengganti ID dan placeholder untuk input nilai sesuai dengan default
       document.getElementById('inputNilaiFE1').id = 'inputNilaiBE1';
