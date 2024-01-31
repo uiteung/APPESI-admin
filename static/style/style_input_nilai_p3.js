@@ -91,19 +91,20 @@ document.addEventListener('DOMContentLoaded', function() {
       document.getElementById('inputNilaiBE3').id = 'inputNilaiFE3';
       document.getElementById('inputNilaiBE4').id = 'inputNilaiFE4';
 
-    } else {
-      // Default jika tidak ada pilihan yang dipilih
-      titleForm.innerText = 'Penilaian Developer';
-      labelNilai1.innerText = 'Semua Endpoint Berfungsi Termasuk Otorisasi dan Autentikasi Token';
-      labelNilai2.innerText = 'Package Dibuat Sendiri dan Semua Digunakan';
-      labelNilai3.innerText = 'Semua Endpoint di GCF Memakai Package yang Dibuat dan Lokasi Server di Jakarta';
-      labelNilai4.innerText = 'Terintegrasi dengan wa.my.id';
+    } 
+    // else {
+    //   // Default jika tidak ada pilihan yang dipilih
+    //   titleForm.innerText = 'Penilaian Developer';
+    //   labelNilai1.innerText = 'Semua Endpoint Berfungsi Termasuk Otorisasi dan Autentikasi Token';
+    //   labelNilai2.innerText = 'Package Dibuat Sendiri dan Semua Digunakan';
+    //   labelNilai3.innerText = 'Semua Endpoint di GCF Memakai Package yang Dibuat dan Lokasi Server di Jakarta';
+    //   labelNilai4.innerText = 'Terintegrasi dengan wa.my.id';
 
-      // Mengganti ID dan placeholder untuk input nilai sesuai dengan default
-      document.getElementById('inputNilaiFE1').id = 'inputNilaiBE1';
-      document.getElementById('inputNilaiFE2').id = 'inputNilaiBE2';
-      document.getElementById('inputNilaiFE3').id = 'inputNilaiBE3';
-      document.getElementById('inputNilaiFE4').id = 'inputNilaiBE4';
-    }
+    //   // Mengganti ID dan placeholder untuk input nilai sesuai dengan default
+    //   document.getElementById('inputNilaiFE1').id = 'inputNilaiBE1';
+    //   document.getElementById('inputNilaiFE2').id = 'inputNilaiBE2';
+    //   document.getElementById('inputNilaiFE3').id = 'inputNilaiBE3';
+    //   document.getElementById('inputNilaiFE4').id = 'inputNilaiBE4';
+    // }
   });
 });
