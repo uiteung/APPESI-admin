@@ -108,24 +108,22 @@ CihuyDomReady(() => {
 
     // Fungsi untuk Menampilkan Data
 	function displayData(page) {
-        const baris = CihuyQuerySelector("#tablebody tr:not([style='display: none;'])");
-        const mulaiindex = (page - 1) * itemPerPage;
-        const akhirindex = mulaiindex + itemPerPage;
-    
-        for (let i = 0; i < baris.length; i++) {
-            if (i >= mulaiindex && i < akhirindex) {
-                baris[i].style.display = "table-row";
-            } else {
-                baris[i].style.display = "none";
-            }
-        }
-    }
+		const baris = CihuyQuerySelector("#tablebody tr");
+		const mulaiindex = (page - 1) * itemPerPage;
+		const akhirindex = mulaiindex + itemPerPage;
+
+		for (let i = 0; i < baris.length; i++) {
+			if (i >= mulaiindex && i < akhirindex) {
+				baris[i].style.display = "table-row";
+			} else {
+				baris[i].style.display = "none";
+			}
+		}
+	}
 
     // Fungsi untuk Update Pagination
     function updatePagination() {
-        const totalFilteredRows = tablebody.querySelectorAll("#tablebody tr:not([style='display: none;'])").length;
-        const totalPages = Math.ceil(totalFilteredRows / itemPerPage);
-        halamanSaatIni.textContent = `Halaman ${halamannow} dari ${totalPages}`;
+        halamanSaatIni.textContent = `Halaman ${halamannow}`;
     }
 
     // Button Pagination (Sebelumnya)
