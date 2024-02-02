@@ -106,45 +106,27 @@ CihuyDomReady(() => {
         console.error("Error:", error);
     });
 
-    const searchInput = CihuyId("searchInputMasuk");
+    // Fungsi untuk Menampilkan Data
+	function displayData(page) {
+		const baris = CihuyQuerySelector("#tablebody tr");
+		const mulaiindex = (page - 1) * itemPerPage;
+		const akhirindex = mulaiindex + itemPerPage;
 
-    searchInput.addEventListener("input", () => {
-        const searchTerm = searchInput.value.toLowerCase();
-        const filteredData = data.data.filter((item) => {
-            const npm1 = item.persyaratan.npm_1.toLowerCase();
-            const npm2 = item.persyaratan.npm2.toLowerCase();
-            const pembimbing = getNameByCode(item.persyaratan.pembimbing).toLowerCase();
-            const penguji = getNameByCode(item.jadwal.penguji2).toLowerCase();
+		for (let i = 0; i < baris.length; i++) {
+			if (i >= mulaiindex && i < akhirindex) {
+				baris[i].style.display = "table-row";
+			} else {
+				baris[i].style.display = "none";
+			}
+		}
+	}
 
-            return npm1.includes(searchTerm) || npm2.includes(searchTerm) || pembimbing.includes(searchTerm) || penguji.includes(searchTerm);
-        });
-
-        displayData(halamannow, filteredData);
-        updatePagination();
-    });
-
-    function displayData(page, filteredData) {
-        const baris = CihuyQuerySelector("#tablebody tr");
-        const mulaiindex = (page - 1) * itemPerPage;
-        const akhirindex = mulaiindex + itemPerPage;
-
-        for (let i = 0; i < baris.length; i++) {
-            if (filteredData && i < filteredData.length) {
-                if (i >= mulaiindex && i < akhirindex) {
-                    baris[i].style.display = "table-row";
-                } else {
-                    baris[i].style.display = "none";
-                }
-            } else {
-                baris[i].style.display = "none";
-            }
-        }
-    }
-
+    // Fungsi untuk Update Pagination
     function updatePagination() {
         halamanSaatIni.textContent = `Halaman ${halamannow}`;
     }
 
+    // Button Pagination (Sebelumnya)
     buttonPreviousPage.addEventListener("click", () => {
         if (halamannow > 1) {
             halamannow--;
@@ -153,12 +135,15 @@ CihuyDomReady(() => {
         }
     });
 
-    buttonNextPage.addEventListener("click", () => {
-        const totalPages = Math.ceil(tablebody.querySelectorAll("#tablebody tr").length / itemPerPage);
-        if (halamannow < totalPages) {
-            halamannow++;
-            displayData(halamannow);
-            updatePagination();
-        }
-    });
+    // Button Pagination (Selanjutnya)
+	buttonNextPage.addEventListener("click", () => {
+		const totalPages = Math.ceil(
+			tablebody.querySelectorAll("#tablebody tr").length / itemPerPage
+		);
+		if (halamannow < totalPages) {
+			halamannow++;
+			displayData(halamannow);
+			updatePagination();
+		}
+	});
 });
