@@ -100,21 +100,34 @@ CihuyDomReady(() => {
             console.error("Error:", error);
         });
 
+    // Search Functionality
     const searchInput = CihuyId("searchInputMasuk");
+    const searchButton = CihuyId("searchButtonMasuk");
 
-    searchInput.addEventListener("input", () => {
+    searchButton.addEventListener("click", () => {
         const searchTerm = searchInput.value.toLowerCase();
-        const filteredData = data.data.filter((item) => {
-            const npm1 = item.persyaratan.npm_1.toLowerCase();
-            const npm2 = item.persyaratan.npm2.toLowerCase();
-            const pembimbing = getNameByCode(item.persyaratan.pembimbing).toLowerCase();
-            const penguji = getNameByCode(item.jadwal.penguji2).toLowerCase();
-
-            return npm1.includes(searchTerm) || npm2.includes(searchTerm) || pembimbing.includes(searchTerm) || penguji.includes(searchTerm);
-        });
-
-        displayData(halamannow, filteredData);
-        updatePagination();
+        if (searchTerm) {
+            const searchData = data.data.filter((entry) => {
+                const npm1 = entry.persyaratan.npm_1.toLowerCase();
+                const npm2 = entry.persyaratan.npm2.toLowerCase();
+                const pembimbing = getNameByCode(entry.persyaratan.pembimbing).toLowerCase();
+                const penguji = getNameByCode(entry.jadwal.penguji2).toLowerCase();
+                return npm1.includes(searchTerm) || npm2.includes(searchTerm) || pembimbing.includes(searchTerm) || penguji.includes(searchTerm);
+            });
+            // Update filteredData, totalData, halamannow, and display the data
+            filteredData = searchData;
+            totalData = filteredData.length;
+            halamannow = 1;
+            displayData(halamannow, filteredData);
+            updatePagination();
+        } else {
+            // If the search term is empty, display the original data
+            filteredData = data.data;
+            totalData = filteredData.length;
+            halamannow = 1;
+            displayData(halamannow, filteredData);
+            updatePagination();
+        }
     });
 
     function displayData(page, filteredData) {
