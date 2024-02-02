@@ -123,7 +123,23 @@ CihuyDomReady(() => {
         updatePagination();
     });
 
-    
+    function displayData(page, filteredData) {
+        const baris = CihuyQuerySelector("#tablebody tr");
+        const mulaiindex = (page - 1) * itemPerPage;
+        const akhirindex = mulaiindex + itemPerPage;
+
+        for (let i = 0; i < baris.length; i++) {
+            if (filteredData && i < filteredData.length) {
+                if (i >= mulaiindex && i < akhirindex) {
+                    baris[i].style.display = "table-row";
+                } else {
+                    baris[i].style.display = "none";
+                }
+            } else {
+                baris[i].style.display = "none";
+            }
+        }
+    }
 
     function updatePagination() {
         halamanSaatIni.textContent = `Halaman ${halamannow}`;
