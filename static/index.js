@@ -4,7 +4,6 @@ import { CihuyId } from "https://c-craftjs.github.io/element/element.js";
 import { UrlGetAllPersyaratan } from "./controller/template.js";
 import { token } from "./controller/cookies.js"
 
-// Get Data Program Studi
 CihuyDomReady(() => {
     const tablebody = CihuyId("tablebody");
     const buttonPreviousPage = CihuyId("prevPageBtn");
@@ -36,97 +35,110 @@ CihuyDomReady(() => {
         "0403117607" : "Noviana Riza, S.Si.,M.T.,SFPC",
     };
 
-    // Untuk Get All Data Pendaftar
+    // Function untuk ambil nama dosen dari NIDN
+    const getNameByCode = (code) => codeToNameMapping[code] || 'Tidak Ada';
+
+    // Get Data Program Studi
     fetch(UrlGetAllPersyaratan, requestOptions)
-    .then((result) => {
-    return result.json();
-    })
-    .then((data) => {
-        if (data && Array.isArray(data.data)) {
-            let tableData = "";
-            data.data.forEach((item, index) => {
-                if (item.persyaratan) {
-                    const values = item.persyaratan;
-                    const jadwal = item.jadwal;
+        .then((result) => {
+            return result.json();
+        })
+        .then((data) => {
+            if (data && Array.isArray(data.data)) {
+                let tableData = "";
+                data.data.forEach((item, index) => {
+                    if (item.persyaratan) {
+                        const values = item.persyaratan;
+                        const jadwal = item.jadwal;
 
-                    // Format tanggal
-                    const waktuSidangFormatted = new Date(jadwal.waktuSidang).toLocaleDateString('id-ID', {
-                        day: 'numeric',
-                        month: 'long',
-                        year: 'numeric'
-                    });
+                        // Format tanggal
+                        const waktuSidangFormatted = new Date(jadwal.waktuSidang).toLocaleDateString('id-ID', {
+                            day: 'numeric',
+                            month: 'long',
+                            year: 'numeric'
+                        });
 
-                    // Function untuk ambil nama dosen dari NIDN
-                    const getNameByCode = (code) => codeToNameMapping[code] || 'Tidak Ada';
+                        tableData += `
+                            <tr>
+                                <td>
+                                    <p class="fw-bold mb-1">${index + 1}</p>
+                                </td>
+                                <td>
+                                    <p class="fw-bold mb-1">${values.npm_1}</p>
+                                </td>
+                                <td>
+                                    <p class="fw-bold mb-1">${values.npm2}</p>
+                                </td>
+                                <td>
+                                    <p class="fw-bold mb-1">${getNameByCode(values.pembimbing)}</p>
+                                </td>
+                                <td>
+                                    <p class="fw-bold mb-1">${getNameByCode(jadwal.penguji2)}</p>
+                                </td>
+                                <td>
+                                    <p class="fw-bold mb-1">${waktuSidangFormatted}</p>
+                                </td>
+                            </tr>`;
+                    }
+                });
 
-                    // Your existing mapping logic here
-                    tableData += `
-                        <tr>
-                            <td>
-                                <p class="fw-bold mb-1">${index + 1}</p>
-                            </td>
-                            <td>
-                                <p class="fw-bold mb-1">${values.npm_1}</p>
-                            </td>
-                            <td>
-                                <p class="fw-bold mb-1">${values.npm2}</p>
-                            </td>
-                            <td>
-                                <p class="fw-bold mb-1">${getNameByCode(values.pembimbing)}</p>
-                            </td>
-                            <td>
-                                <p class="fw-bold mb-1">${getNameByCode(jadwal.penguji2)}</p>
-                            </td>
-                            <td>
-                                <p class="fw-bold mb-1">${waktuSidangFormatted}</p>
-                            </td>
-                        </tr>`;
+                document.getElementById("tablebody").innerHTML = tableData;
+
+                const totalData = data.data.length;
+                const jumlahPengjuanSidangElement = CihuyId("jumlahPengjuanSidang");
+                if (jumlahPengjuanSidangElement) {
+                    jumlahPengjuanSidangElement.innerText = `Jumlah Pengajuan: ${totalData}`;
                 }
-            });
-            // Tampilkan data pegawai ke dalam tabel
-            document.getElementById("tablebody").innerHTML = tableData;
 
-            // Menghitung banyaknya data
-            const totalData = data.data.length;
-
-            // Untuk menampilkan jumlah pengajuan sidang di html
-            const jumlahPengjuanSidangElement = CihuyId("jumlahPengjuanSidang");
-            if (jumlahPengjuanSidangElement) {
-                jumlahPengjuanSidangElement.innerText = `Jumlah Pengajuan: ${totalData}`;
+                displayData(halamannow);
+                updatePagination();
+            } else {
+                console.error("Data or data.data is undefined or not an array.");
             }
-    
-            // Untuk Memunculkan Pagination Halamannya
-            displayData(halamannow);
-            updatePagination();
-        } else {
-            console.error("Data or data.data is undefined or not an array.");
-        }
-    })
-    .catch((error) => {
-        console.error("Error:", error);
+        })
+        .catch((error) => {
+            console.error("Error:", error);
+        });
+
+    const searchInput = CihuyId("searchInputMasuk");
+
+    searchInput.addEventListener("input", () => {
+        const searchTerm = searchInput.value.toLowerCase();
+        const filteredData = data.data.filter((item) => {
+            const npm1 = item.persyaratan.npm_1.toLowerCase();
+            const npm2 = item.persyaratan.npm2.toLowerCase();
+            const pembimbing = getNameByCode(item.persyaratan.pembimbing).toLowerCase();
+            const penguji = getNameByCode(item.jadwal.penguji2).toLowerCase();
+
+            return npm1.includes(searchTerm) || npm2.includes(searchTerm) || pembimbing.includes(searchTerm) || penguji.includes(searchTerm);
+        });
+
+        displayData(halamannow, filteredData);
+        updatePagination();
     });
 
-    // Fungsi untuk Menampilkan Data
-	function displayData(page) {
-		const baris = CihuyQuerySelector("#tablebody tr");
-		const mulaiindex = (page - 1) * itemPerPage;
-		const akhirindex = mulaiindex + itemPerPage;
+    function displayData(page, filteredData) {
+        const baris = CihuyQuerySelector("#tablebody tr");
+        const mulaiindex = (page - 1) * itemPerPage;
+        const akhirindex = mulaiindex + itemPerPage;
 
-		for (let i = 0; i < baris.length; i++) {
-			if (i >= mulaiindex && i < akhirindex) {
-				baris[i].style.display = "table-row";
-			} else {
-				baris[i].style.display = "none";
-			}
-		}
-	}
+        for (let i = 0; i < baris.length; i++) {
+            if (filteredData && i < filteredData.length) {
+                if (i >= mulaiindex && i < akhirindex) {
+                    baris[i].style.display = "table-row";
+                } else {
+                    baris[i].style.display = "none";
+                }
+            } else {
+                baris[i].style.display = "none";
+            }
+        }
+    }
 
-    // Fungsi untuk Update Pagination
     function updatePagination() {
         halamanSaatIni.textContent = `Halaman ${halamannow}`;
     }
 
-    // Button Pagination (Sebelumnya)
     buttonPreviousPage.addEventListener("click", () => {
         if (halamannow > 1) {
             halamannow--;
@@ -135,15 +147,12 @@ CihuyDomReady(() => {
         }
     });
 
-    // Button Pagination (Selanjutnya)
-	buttonNextPage.addEventListener("click", () => {
-		const totalPages = Math.ceil(
-			tablebody.querySelectorAll("#tablebody tr").length / itemPerPage
-		);
-		if (halamannow < totalPages) {
-			halamannow++;
-			displayData(halamannow);
-			updatePagination();
-		}
-	});
+    buttonNextPage.addEventListener("click", () => {
+        const totalPages = Math.ceil(tablebody.querySelectorAll("#tablebody tr").length / itemPerPage);
+        if (halamannow < totalPages) {
+            halamannow++;
+            displayData(halamannow);
+            updatePagination();
+        }
+    });
 });
