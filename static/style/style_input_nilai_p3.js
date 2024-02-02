@@ -14,52 +14,52 @@ document.addEventListener("DOMContentLoaded", function () {
     var inputNilaiFE4 = document.getElementById("inputNilaiFE4");
 
     // Tambahkan event listener untuk validasi input
-    inputNPMBE.addEventListener("input", function () {
+    inputNPMBE.addEventListener("select", function () {
       // Hapus karakter non-angka dari nilai input
       inputNPMBE.value = inputNPMBE.value.replace(/\D/g, "");
     });
     
-    inputNilaiBE1.addEventListener("input", function () {
+    inputNilaiBE1.addEventListener("select", function () {
       // Hapus karakter non-angka dari nilai input
       inputNilaiBE1.value = inputNilaiBE1.value.replace(/\D/g, "");
     });
     
-    inputNilaiBE2.addEventListener("input", function () {
+    inputNilaiBE2.addEventListener("select", function () {
       // Hapus karakter non-angka dari nilai input
       inputNilaiBE2.value = inputNilaiBE2.value.replace(/\D/g, "");
     });
     
-    inputNilaiBE3.addEventListener("input", function () {
+    inputNilaiBE3.addEventListener("select", function () {
       // Hapus karakter non-angka dari nilai input
       inputNilaiBE3.value = inputNilaiBE3.value.replace(/\D/g, "");
     });
 
-    inputNilaiBE4.addEventListener("input", function () {
+    inputNilaiBE4.addEventListener("select", function () {
         // Hapus karakter non-angka dari nilai input
         inputNilaiBE4.value = inputNilaiBE4.value.replace(/\D/g, "");
     });
 
-    inputNPMFE.addEventListener("input", function () {
+    inputNPMFE.addEventListener("select", function () {
       // Hapus karakter non-angka dari nilai input
       inputNPMFE.value = inputNPMFE.value.replace(/\D/g, "");
     });
     
-    inputNilaiFE1.addEventListener("input", function () {
+    inputNilaiFE1.addEventListener("select", function () {
       // Hapus karakter non-angka dari nilai input
       inputNilaiFE1.value = inputNilaiFE1.value.replace(/\D/g, "");
     });
     
-    inputNilaiFE2.addEventListener("input", function () {
+    inputNilaiFE2.addEventListener("select", function () {
       // Hapus karakter non-angka dari nilai input
       inputNilaiFE2.value = inputNilaiFE2.value.replace(/\D/g, "");
     });
     
-    inputNilaiFE3.addEventListener("input", function () {
+    inputNilaiFE3.addEventListener("select", function () {
       // Hapus karakter non-angka dari nilai input
       inputNilaiFE3.value = inputNilaiFE3.value.replace(/\D/g, "");
     });
 
-    inputNilaiFE4.addEventListener("input", function () {
+    inputNilaiFE4.addEventListener("select", function () {
         // Hapus karakter non-angka dari nilai input
         inputNilaiFE4.value = inputNilaiFE4.value.replace(/\D/g, "");
     });
