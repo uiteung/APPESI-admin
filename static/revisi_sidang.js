@@ -35,6 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const InputTahun = getValue('inputTahunAkademik');
         const InputTipeBimbingan = getValue('selectTipeBimbingan');
         const InputRevisi = getValue('inputRevisi');
+        let splitdata = InputRevisi.split(",")
 
         let url = ""
         if (InputTipeBimbingan != "p3") {
@@ -49,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
             "nim": InputNPM,
             "tahun_aka": InputTahun,
             "tipe": InputTipeBimbingan,
-            "revisi": InputRevisi
+            "revisi": splitdata
         };
 
         console.log(data);
