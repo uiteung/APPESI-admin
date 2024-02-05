@@ -68,6 +68,7 @@ CihuyDomReady(() => {
                     // Your existing mapping logic here
                     tableData += `
                         <tr>
+                            <td hidden></td>
                             <td>
                                 <p class="fw-bold mb-1">${index + 1}</p>
                             </td>
@@ -81,9 +82,6 @@ CihuyDomReady(() => {
                             </td>
                             <td>
                                 <p class="fw-bold mb-1">${getNameByCode(values.pembimbing)}</p>
-                            </td>
-                            <td>
-                                <p class="fw-bold mb-1">${getNameByCode(jadwal.penguji2)}</p>
                             </td>
                             <td>
                                 <p class="fw-bold mb-1">${waktuSidangFormatted}</p>
