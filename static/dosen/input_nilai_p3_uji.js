@@ -19,7 +19,7 @@ CihuyDomReady(() => {
     const itemPerPage = 5;
     let halamannow = 1;
 
-    const selectPembimbing = CihuyId("selectPembimbing");
+    const selectPenguji = CihuyId("selectPenguji");
 
     const requestOptions = {
         method: 'GET',
@@ -52,17 +52,17 @@ CihuyDomReady(() => {
                 let tableData = "";
                 let filteredData = [];
 
-                const filterDataByPembimbing = (selectedPembimbing) => {
+                const filterDataByPenguji = (selectedPembimbing) => {
                     filteredData = data.data.filter(item => {
                         return item.jadwal.penguji2 === selectedPembimbing;
                     });
                 };
 
-                filterDataByPembimbing(selectPembimbing.value);
+                filterDataByPenguji(selectPenguji.value);
                 renderTable(filteredData);
 
-                selectPembimbing.addEventListener("change", () => {
-                    filterDataByPembimbing(selectPembimbing.value);
+                selectPenguji.addEventListener("change", () => {
+                    filterDataByPenguji(selectPenguji.value);
                     halamannow = 1;
                     displayData(halamannow);
                     updatePagination();
