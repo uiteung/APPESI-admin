@@ -25,14 +25,6 @@ CihuyDomReady(() => {
   let halamannow = 1;
   const pilihPembimbing = CihuyId("selectPembimbing");
 
-  const requestOptions = {
-    method: "GET",
-    headers: {
-      AUTH: token,
-      "Content-Type": "application/json",
-    },
-  };
-
   // Mapping NIDN ke Nama
   const codeToNameMapping = {
     "0420058801": "Roni Andarsyah, S.T.,M.Kom.,SFPC",
