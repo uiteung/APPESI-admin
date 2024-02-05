@@ -156,86 +156,6 @@ CihuyDomReady(() => {
     }
   });
 
-  //   Untuk Get All Data Pendaftar
-  //   fetch(UrlGetAllPersyaratan, requestOptions)
-  //     .then((result) => {
-  //       return result.json();
-  //     })
-  //     .then((data) => {
-  //       if (data && Array.isArray(data.data)) {
-  //         let tableData = "";
-  //         data.data.forEach((item, index) => {
-  //           if (item.persyaratan) {
-  //             const values = item.persyaratan;
-  //             const jadwal = item.jadwal;
-
-  //             // Format tanggal
-  //             const waktuSidangFormatted = new Date(
-  //               jadwal.waktuSidang
-  //             ).toLocaleDateString("id-ID", {
-  //               day: "numeric",
-  //               month: "long",
-  //               year: "numeric",
-  //             });
-
-  //             // Function untuk ambil nama dosen dari NIDN
-  //             const getNameByCode = (code) =>
-  //               codeToNameMapping[code] || "Tidak Ada";
-
-  //             // Your existing mapping logic here
-  //             tableData += `
-  //                           <tr>
-  //                               <td hidden></td>
-  //                               <td>
-  //                                   <p class="fw-bold mb-1">${index + 1}</p>
-  //                               </td>
-  //                               <td>
-  //                                   <p class="fw-bold mb-1">${values.npm_1}</p>
-  //                                   <p class="fw-bold mb-1">${
-  //                                     values.posisi_mhs_1
-  //                                   }</p>
-  //                               </td>
-  //                               <td>
-  //                                   <p class="fw-bold mb-1">${values.npm2}</p>
-  //                                   <p class="fw-bold mb-1">${
-  //                                     values.posisi_mhs_2
-  //                                   }</p>
-  //                               </td>
-  //                               <td>
-  //                                   <p class="fw-bold mb-1">${getNameByCode(
-  //                                     values.pembimbing
-  //                                   )}</p>
-  //                               </td>
-  //                               <td>
-  //                                   <p class="fw-bold mb-1">${waktuSidangFormatted}</p>
-  //                               </td>
-  //                           </tr>`;
-  //           }
-  //         });
-  //         // Tampilkan data pegawai ke dalam tabel
-  //         document.getElementById("tablebody").innerHTML = tableData;
-
-  //         // Menghitung banyaknya data
-  //         const totalData = data.data.length;
-
-  //         // Untuk menampilkan jumlah pengajuan sidang di html
-  //         const jumlahPengjuanSidangElement = CihuyId("jumlahPengjuanSidang");
-  //         if (jumlahPengjuanSidangElement) {
-  //           jumlahPengjuanSidangElement.innerText = `Jumlah Pengajuan: ${totalData}`;
-  //         }
-
-  //         // Untuk Memunculkan Pagination Halamannya
-  //         displayData(halamannow);
-  //         updatePagination();
-  //       } else {
-  //         console.error("Data or data.data is undefined or not an array.");
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error:", error);
-  //     });
-
-  // Fungsi untuk Menampilkan Data
   function displayData(page) {
     const baris = CihuyQuerySelector("#tablebody tr");
     const mulaiindex = (page - 1) * itemPerPage;
@@ -276,6 +196,87 @@ CihuyDomReady(() => {
     }
   });
 });
+
+//   Untuk Get All Data Pendaftar
+//   fetch(UrlGetAllPersyaratan, requestOptions)
+//     .then((result) => {
+//       return result.json();
+//     })
+//     .then((data) => {
+//       if (data && Array.isArray(data.data)) {
+//         let tableData = "";
+//         data.data.forEach((item, index) => {
+//           if (item.persyaratan) {
+//             const values = item.persyaratan;
+//             const jadwal = item.jadwal;
+
+//             // Format tanggal
+//             const waktuSidangFormatted = new Date(
+//               jadwal.waktuSidang
+//             ).toLocaleDateString("id-ID", {
+//               day: "numeric",
+//               month: "long",
+//               year: "numeric",
+//             });
+
+//             // Function untuk ambil nama dosen dari NIDN
+//             const getNameByCode = (code) =>
+//               codeToNameMapping[code] || "Tidak Ada";
+
+//             // Your existing mapping logic here
+//             tableData += `
+//                           <tr>
+//                               <td hidden></td>
+//                               <td>
+//                                   <p class="fw-bold mb-1">${index + 1}</p>
+//                               </td>
+//                               <td>
+//                                   <p class="fw-bold mb-1">${values.npm_1}</p>
+//                                   <p class="fw-bold mb-1">${
+//                                     values.posisi_mhs_1
+//                                   }</p>
+//                               </td>
+//                               <td>
+//                                   <p class="fw-bold mb-1">${values.npm2}</p>
+//                                   <p class="fw-bold mb-1">${
+//                                     values.posisi_mhs_2
+//                                   }</p>
+//                               </td>
+//                               <td>
+//                                   <p class="fw-bold mb-1">${getNameByCode(
+//                                     values.pembimbing
+//                                   )}</p>
+//                               </td>
+//                               <td>
+//                                   <p class="fw-bold mb-1">${waktuSidangFormatted}</p>
+//                               </td>
+//                           </tr>`;
+//           }
+//         });
+//         // Tampilkan data pegawai ke dalam tabel
+//         document.getElementById("tablebody").innerHTML = tableData;
+
+//         // Menghitung banyaknya data
+//         const totalData = data.data.length;
+
+//         // Untuk menampilkan jumlah pengajuan sidang di html
+//         const jumlahPengjuanSidangElement = CihuyId("jumlahPengjuanSidang");
+//         if (jumlahPengjuanSidangElement) {
+//           jumlahPengjuanSidangElement.innerText = `Jumlah Pengajuan: ${totalData}`;
+//         }
+
+//         // Untuk Memunculkan Pagination Halamannya
+//         displayData(halamannow);
+//         updatePagination();
+//       } else {
+//         console.error("Data or data.data is undefined or not an array.");
+//       }
+//     })
+//     .catch((error) => {
+//       console.error("Error:", error);
+//     });
+
+// Fungsi untuk Menampilkan Data
 
 // Fitur Search
 // document.addEventListener("DOMContentLoaded", function () {
