@@ -52,9 +52,9 @@ CihuyDomReady(() => {
                 let tableData = "";
                 let filteredData = [];
 
-                const filterDataByPenguji = (selectedPembimbing) => {
+                const filterDataByPenguji = (selectedPenguji) => {
                     filteredData = data.data.filter(item => {
-                        return item.jadwal.penguji2 === selectedPembimbing;
+                        return item.jadwal.penguji2 === selectedPenguji;
                     });
                 };
 
