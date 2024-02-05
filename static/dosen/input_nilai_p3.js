@@ -85,7 +85,7 @@ CihuyDomReady(() => {
 
     updatePagination();
   }
-
+  //cihuydataapi
   CihuyDataAPI(UrlGetAllPersyaratan, token, (error, data) => {
     if (error) {
       console.error("Error:", error);
