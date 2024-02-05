@@ -3,6 +3,7 @@ import { getCookie } from "https://jscroot.github.io/cookie/croot.js";
 import { getValue } from "https://jscroot.github.io/element/croot.js";
 import { CihuyDomReady, CihuyQuerySelector } from "https://c-craftjs.github.io/table/table.js";
 import { CihuyId } from "https://c-craftjs.github.io/element/element.js";
+import { CihuyDataAPI } from "https://c-craftjs.github.io/appesi/api.js";
 import { UrlGetAllPersyaratan } from "../controller/template.js";
 
 let token = getCookie("login");
