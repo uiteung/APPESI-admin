@@ -5,12 +5,12 @@ import { CihuyDomReady, CihuyQuerySelector } from "https://c-craftjs.github.io/t
 import { CihuyId } from "https://c-craftjs.github.io/element/element.js";
 import { UrlGetAllPersyaratan } from "../controller/template.js";
 
-let token = getCookie("login")
+let token = getCookie("login");
+
 if (token == "") {
-    window.location.href("https://euis.ulbi.ac.id/")
+    window.location.href("https://euis.ulbi.ac.id/");
 }
 
-// Get Data All Pendaftaran
 CihuyDomReady(() => {
     const tablebody = CihuyId("tablebody");
     const buttonPreviousPage = CihuyId("prevPageBtn");
@@ -18,6 +18,8 @@ CihuyDomReady(() => {
     const halamanSaatIni = CihuyId("currentPage");
     const itemPerPage = 5;
     let halamannow = 1;
+
+    const selectPembimbing = CihuyId("selectPembimbing");
 
     const requestOptions = {
         method: 'GET',
@@ -27,153 +29,127 @@ CihuyDomReady(() => {
         }
     };
 
-    // Mapping NIDN ke Nama
     const codeToNameMapping = {
-        "0420058801" : "Roni Andarsyah, S.T.,M.Kom.,SFPC",
-        "0427078401" : "Cahyo Prianto, S.Pd.,M.T.,CDSP.,SFPC",
-        "0407117405" : "M. Yusril Helmi Setyawan, S.Kom.,M.Kom.,SFPC",
-        "0410118609" : "Rolly Maulana Awangga, S.T.,MT.,CAIP,SFPC",
-        "0402058005" : "Mohamad Nurkamal Fauzan, S.T.,M.T.,SFPC",
-        "0423127804" : "Roni Habibi, S.Kom.,M.T.,SFPC",
-        "0416048803" : "Syafrial Fachri Pane,ST. M.TI.,EBDP.,CDSP.,SFPC",
-        "0402047205" : "Rd. Nuraini Siti Fatonah, S.S.,M.Hum.,SFPC",
-        "0415048901" : "Nisa Hanum Harani, S.Kom.,M.T.,CDSP.,SFPC",
-        "0415107901" : "Woro Isti Rahayu, S.T.,M.T.,SFPC",
-        "0403117607" : "Noviana Riza, S.Si.,M.T.,SFPC",
+        "0420058801": "Roni Andarsyah, S.T.,M.Kom.,SFPC",
+        "0427078401": "Cahyo Prianto, S.Pd.,M.T.,CDSP.,SFPC",
+        "0407117405": "M. Yusril Helmi Setyawan, S.Kom.,M.Kom.,SFPC",
+        "0410118609": "Rolly Maulana Awangga, S.T.,MT.,CAIP,SFPC",
+        "0402058005": "Mohamad Nurkamal Fauzan, S.T.,M.T.,SFPC",
+        "0423127804": "Roni Habibi, S.Kom.,M.T.,SFPC",
+        "0416048803": "Syafrial Fachri Pane,ST. M.TI.,EBDP.,CDSP.,SFPC",
+        "0402047205": "Rd. Nuraini Siti Fatonah, S.S.,M.Hum.,SFPC",
+        "0415048901": "Nisa Hanum Harani, S.Kom.,M.T.,CDSP.,SFPC",
+        "0415107901": "Woro Isti Rahayu, S.T.,M.T.,SFPC",
+        "0403117607": "Noviana Riza, S.Si.,M.T.,SFPC",
     };
 
-    // Untuk Get All Data Pendaftar
     fetch(UrlGetAllPersyaratan, requestOptions)
-    .then((result) => {
-    return result.json();
-    })
-    .then((data) => {
-        if (data && Array.isArray(data.data)) {
-            let tableData = "";
-            data.data.forEach((item, index) => {
-                if (item.persyaratan) {
-                    const values = item.persyaratan;
-                    const jadwal = item.jadwal;
+        .then((result) => {
+            return result.json();
+        })
+        .then((data) => {
+            if (data && Array.isArray(data.data)) {
+                let tableData = "";
+                let filteredData = [];
 
-                    // Format tanggal
-                    const waktuSidangFormatted = new Date(jadwal.waktuSidang).toLocaleDateString('id-ID', {
-                        day: 'numeric',
-                        month: 'long',
-                        year: 'numeric'
+                const filterDataByPembimbing = (selectedPembimbing) => {
+                    filteredData = data.data.filter(item => {
+                        return item.jadwal.penguji2 === selectedPembimbing;
                     });
+                };
 
-                    // Function untuk ambil nama dosen dari NIDN
-                    const getNameByCode = (code) => codeToNameMapping[code] || 'Tidak Ada';
+                filterDataByPembimbing(selectPembimbing.value);
+                renderTable(filteredData);
 
-                    // Your existing mapping logic here
-                    tableData += `
-                        <tr>
-                            <td hidden></td>
-                            <td>
-                                <p class="fw-bold mb-1">${index + 1}</p>
-                            </td>
-                            <td>
-                                <p class="fw-bold mb-1">${values.npm_1}</p>
-                                <p class="fw-bold mb-1">${values.posisi_mhs_1}</p>
-                            </td>
-                            <td>
-                                <p class="fw-bold mb-1">${values.npm2}</p>
-                                <p class="fw-bold mb-1">${values.posisi_mhs_2}</p>
-                            </td>
-                            <td>
-                                <p class="fw-bold mb-1">${getNameByCode(jadwal.penguji2)}</p>
-                            </td>
-                            <td>
-                                <p class="fw-bold mb-1">${waktuSidangFormatted}</p>
-                            </td>
-                        </tr>`;
-                }
-            });
-            // Tampilkan data pegawai ke dalam tabel
-            document.getElementById("tablebody").innerHTML = tableData;
+                selectPembimbing.addEventListener("change", () => {
+                    filterDataByPembimbing(selectPembimbing.value);
+                    halamannow = 1;
+                    displayData(halamannow);
+                    updatePagination();
+                });
 
-            // Menghitung banyaknya data
-            const totalData = data.data.length;
+                const displayData = (page) => {
+                    const rows = CihuyQuerySelector("#tablebody tr");
+                    const startIndex = (page - 1) * itemPerPage;
+                    const endIndex = startIndex + itemPerPage;
 
-            // Untuk menampilkan jumlah pengajuan sidang di html
-            const jumlahPengjuanSidangElement = CihuyId("jumlahPengjuanSidang");
-            if (jumlahPengjuanSidangElement) {
-                jumlahPengjuanSidangElement.innerText = `Jumlah Pengajuan: ${totalData}`;
+                    for (let i = 0; i < rows.length; i++) {
+                        if (i >= startIndex && i < endIndex) {
+                            rows[i].style.display = "table-row";
+                        } else {
+                            rows[i].style.display = "none";
+                        }
+                    }
+                };
+
+                const updatePagination = () => {
+                    halamanSaatIni.textContent = `Halaman ${halamannow}`;
+                };
+
+                buttonPreviousPage.addEventListener("click", () => {
+                    if (halamannow > 1) {
+                        halamannow--;
+                        displayData(halamannow);
+                        updatePagination();
+                    }
+                });
+
+                buttonNextPage.addEventListener("click", () => {
+                    const totalPages = Math.ceil(
+                        tablebody.querySelectorAll("#tablebody tr").length / itemPerPage
+                    );
+                    if (halamannow < totalPages) {
+                        halamannow++;
+                        displayData(halamannow);
+                        updatePagination();
+                    }
+                });
+            } else {
+                console.error("Data or data.data is undefined or not an array.");
             }
-    
-            // Untuk Memunculkan Pagination Halamannya
-            displayData(halamannow);
-            updatePagination();
-        } else {
-            console.error("Data or data.data is undefined or not an array.");
-        }
-    })
-    .catch((error) => {
-        console.error("Error:", error);
-    });
+        })
+        .catch((error) => {
+            console.error("Error:", error);
+        });
 
-    // Fungsi untuk Menampilkan Data
-	function displayData(page) {
-		const baris = CihuyQuerySelector("#tablebody tr");
-		const mulaiindex = (page - 1) * itemPerPage;
-		const akhirindex = mulaiindex + itemPerPage;
+    const renderTable = (filteredData) => {
+        let tableData = "";
+        filteredData.forEach((item, index) => {
+            const values = item.persyaratan;
+            const jadwal = item.jadwal;
 
-		for (let i = 0; i < baris.length; i++) {
-			if (i >= mulaiindex && i < akhirindex) {
-				baris[i].style.display = "table-row";
-			} else {
-				baris[i].style.display = "none";
-			}
-		}
-	}
+            const waktuSidangFormatted = new Date(jadwal.waktuSidang).toLocaleDateString('id-ID', {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric'
+            });
 
-    // Fungsi untuk Update Pagination
-    function updatePagination() {
-        halamanSaatIni.textContent = `Halaman ${halamannow}`;
-    }
+            const getNameByCode = (code) => codeToNameMapping[code] || 'Tidak Ada';
 
-    // Button Pagination (Sebelumnya)
-    buttonPreviousPage.addEventListener("click", () => {
-        if (halamannow > 1) {
-            halamannow--;
-            displayData(halamannow);
-            updatePagination();
-        }
-    });
-
-    // Button Pagination (Selanjutnya)
-	buttonNextPage.addEventListener("click", () => {
-		const totalPages = Math.ceil(
-			tablebody.querySelectorAll("#tablebody tr").length / itemPerPage
-		);
-		if (halamannow < totalPages) {
-			halamannow++;
-			displayData(halamannow);
-			updatePagination();
-		}
-	});
-});
-
-// Fitur Search
-document.addEventListener("DOMContentLoaded", function () {
-	const searchInput = document.getElementById("searchInput");
-	const tableBody = document.getElementById("tablebody").getElementsByTagName("tr");
-	searchInput.addEventListener("input", function () {
-		const searchText = searchInput.value.toLowerCase();
-
-		for (const row of tableBody) {
-			const cells = row.getElementsByTagName("td");
-			let rowMatchesSearch = false;
-
-			for (const cell of cells) {
-				if (cell.textContent.toLowerCase().includes(searchText)) {
-					rowMatchesSearch = true;
-					break;
-				}
-			}
-			row.style.display = rowMatchesSearch ? "" : "none";
-		}
-	});
+            tableData += `
+                <tr>
+                    <td hidden></td>
+                    <td>
+                        <p class="fw-bold mb-1">${index + 1}</p>
+                    </td>
+                    <td>
+                        <p class="fw-bold mb-1">${values.npm_1}</p>
+                        <p class="fw-bold mb-1">${values.posisi_mhs_1}</p>
+                    </td>
+                    <td>
+                        <p class="fw-bold mb-1">${values.npm2}</p>
+                        <p class="fw-bold mb-1">${values.posisi_mhs_2}</p>
+                    </td>
+                    <td>
+                        <p class="fw-bold mb-1">${getNameByCode(jadwal.penguji2)}</p>
+                    </td>
+                    <td>
+                        <p class="fw-bold mb-1">${waktuSidangFormatted}</p>
+                    </td>
+                </tr>`;
+        });
+        document.getElementById("tablebody").innerHTML = tableData;
+    };
 });
 
 // Penilaian BackEnd Proyek 3
