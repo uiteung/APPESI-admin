@@ -63,11 +63,11 @@ CihuyDomReady(() => {
 
   pilihPembimbing.addEventListener("change", () => {
     const selectedCode = pilihPembimbing.value;
-    displayDataByPenguji(selectedCode);
+    TampilDataByPenguji(selectedCode);
   });
 
   // Function to display data based on selected penguji code
-  function displayDataByPenguji(selectedCode) {
+  function TampilDataByPenguji(selectedCode) {
     const baris = CihuyQuerySelector("#tablebody tr");
 
     // Filter rows based on selected penguji code
