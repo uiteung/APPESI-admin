@@ -23,6 +23,7 @@ CihuyDomReady(() => {
   const halamanSaatIni = CihuyId("currentPage");
   const itemPerPage = 5;
   let halamannow = 1;
+  const pilihPembimbing = CihuyId("selectPembimbing");
 
   const requestOptions = {
     method: "GET",
@@ -46,6 +47,45 @@ CihuyDomReady(() => {
     "0415107901": "Woro Isti Rahayu, S.T.,M.T.,SFPC",
     "0403117607": "Noviana Riza, S.Si.,M.T.,SFPC",
   };
+  const nameToCodeMapping = {
+    "Roni Andarsyah, S.T.,M.Kom.,SFPC": "0420058801",
+    "Cahyo Prianto, S.Pd.,M.T.,CDSP.,SFPC": "0427078401",
+    "M. Yusril Helmi Setyawan, S.Kom.,M.Kom.,SFPC": "0407117405",
+    "Rolly Maulana Awangga, S.T.,MT.,CAIP,SFPC": "0410118609",
+    "Mohamad Nurkamal Fauzan, S.T.,M.T.,SFPC": "0402058005",
+    "Roni Habibi, S.Kom.,M.T.,SFPC": "0423127804",
+    "Syafrial Fachri Pane,ST. M.TI.,EBDP.,CDSP.,SFPC": "0416048803",
+    "Rd. Nuraini Siti Fatonah, S.S.,M.Hum.,SFPC": "0402047205",
+    "Nisa Hanum Harani, S.Kom.,M.T.,CDSP.,SFPC": "0415048901",
+    "Woro Isti Rahayu, S.T.,M.T.,SFPC": "0415107901",
+    "Noviana Riza, S.Si.,M.T.,SFPC": "0403117607",
+  };
+
+  pilihPembimbing.addEventListener("change", () => {
+    const selectedCode = pilihPembimbing.value;
+    displayDataByPenguji(selectedCode);
+  });
+
+  // Function to display data based on selected penguji code
+  function displayDataByPenguji(selectedCode) {
+    const baris = CihuyQuerySelector("#tablebody tr");
+
+    // Filter rows based on selected penguji code
+    for (let i = 0; i < baris.length; i++) {
+      const pengujiCell = baris[i].querySelector("td:nth-child(5) p");
+      const pengujiCode = nameToCodeMapping[pengujiCell.innerText.trim()];
+
+      // Check if the row matches the selected penguji
+      if (selectedCode === "" || pengujiCode === selectedCode) {
+        baris[i].style.display = "table-row";
+      } else {
+        baris[i].style.display = "none";
+      }
+    }
+
+    updatePagination();
+  }
+
   CihuyDataAPI(UrlGetAllPersyaratan, token, (error, data) => {
     if (error) {
       console.error("Error:", error);
@@ -115,6 +155,7 @@ CihuyDomReady(() => {
       console.error("Data or data.data is undefined or not an array.");
     }
   });
+
   //   Untuk Get All Data Pendaftar
   //   fetch(UrlGetAllPersyaratan, requestOptions)
   //     .then((result) => {
