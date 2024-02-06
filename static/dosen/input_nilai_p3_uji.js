@@ -322,9 +322,3 @@ document.addEventListener("DOMContentLoaded", function() {
       });
     };
 })
-
-
-
-// function responsesdata(value) {
-//     console.log(value)
-// }
