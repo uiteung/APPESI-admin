@@ -254,7 +254,57 @@
               </div>
             </div>
           </div>
-        </div>        
+        </div>
+        <!-- Tabel Nilai Sidang Mahasiswa -->
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title fw-semibold mb-4">Nilai Sidang Mahasiswa</h5>
+            <div class="card">
+              <div class="card-body">
+                <div class="table-wrapper table-responsive">
+                  <div class="table-container">
+                    <table class="table">
+                      <thead>
+                        <tr style="text-align: center; vertical-align: middle">
+                          <th hidden></th>
+                          <th><h6>No</h6></th>
+                          <th><h6>NPM</h6></th>
+                          <th><h6>Tipe Bimbingan</h6></th>
+                          <th><h6>Tahun</h6></th>
+                          <th><h6>Nilai Sidang</h6></th>
+                          <th><h6>Action</h6></th>
+                        </tr>
+                        <!-- end table row-->
+                      </thead>
+                      <tbody id="tablebody-nilai">
+                        <!-- JS Data -->
+                        <!-- end table row -->
+                      </tbody>
+                    </table>
+                  <!-- end table -->
+                  </div>
+                </div>
+                <!-- start Button Pagination -->
+                <div class="row">
+                  <div class="col-md-6">
+                  <div class="pagination">
+                    <button id="prevPageBtn-nilai" class="btn btn-primary">
+                    Previous
+                    </button>
+                    <span id="currentPage-nilai" class="mx-3 mt-2
+                    ">Page 1</span>
+                    <button id="nextPageBtn-nilai" class="btn btn-primary">
+                    Next
+                    </button>
+                  </div>
+                  </div>
+                </div>
+                <!-- end Button Pagination -->
+              </div>
+            </div>
+            <h7 class="fw-semibold" id="jumlahNilaiMahasiswa">Jumlah Nilai Mahasiswa : </h7>
+          </div>
+        </div>    
         </div>
       </div>
     </div>
