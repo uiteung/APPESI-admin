@@ -48,7 +48,7 @@ CihuyDomReady(() => {
                 if (item.nilai) {
                     const { nim, tipe, tahun, nilai } = item;
                     tableData += `
-                        <tr>
+                        <tr style="text-align: center; vertical-align: middle">
                             <td hidden></td>
                             <td>
                                 <p class="fw-bold mb-1">${index + 1}</p>
