@@ -39,45 +39,64 @@ CihuyDomReady(() => {
     // Untuk Get All Data Pendaftar
     fetch(UrlGetAllNilaiP3, requestOptions)
     .then((result) => {
-    return result.json();
+        return result.json();
     })
     .then((data) => {
         if (data && Array.isArray(data.data)) {
-            let tableData = "";
-            data.data.forEach((item, index) => {
+            // Objek untuk mengelompokkan data berdasarkan npm
+            const npmMap = {};
+            
+            data.data.forEach((item) => {
                 if (item.nilai) {
                     const { nim, tipe, tahun, nilai, penilai } = item;
                     const getNameByCode = (code) => codeToNameMapping[code] || "Tidak Ada";
-    
-                    nilai.forEach((nilaiItem, nilaiIndex) => {
-                        tableData += `
-                            <tr style="text-align: center; vertical-align: middle">
-                                <td hidden></td>
-                                <td>
-                                    <p class="fw-bold mb-1">${index + 1}</p>
-                                </td>    
-                                <td>
-                                    <p class="fw-bold mb-1">${nim}</p>
-                                </td>
-                                <td>
-                                    <p class="fw-bold mb-1">${tipe}</p>
-                                </td>
-                                <td>
-                                    <p class="fw-bold mb-1">${tahun}</p>
-                                </td>
-                                <td>
-                                    <p class="fw-bold mb-1">${nilaiItem.value} dinilai oleh <b>${getNameByCode(penilai)}</b></p>
-                                </td>
-                                <td>
-                                    ${(nilaiIndex === 0) ? `<button type="button" class="btn btn-info m-1" data-nilai-npm="${nim}">Detail</button>` : ''}
-                                </td>
-                            </tr>`;
-                    });
+                    
+                    // Membuat atau menambahkan data ke objek npmMap
+                    if (!npmMap[nim]) {
+                        npmMap[nim] = {
+                            nim,
+                            tipe,
+                            tahun,
+                            nilai: [],
+                            penilai: []
+                        };
+                    }
+                    
+                    npmMap[nim].nilai.push(nilai.map(item => item.value).join(', '));
+                    npmMap[nim].penilai.push(getNameByCode(penilai));
                 }
             });
 
+            let tableData = "";
+            // Mendapatkan array nilai dari objek npmMap
+            const npmArray = Object.values(npmMap);
+            npmArray.forEach((npmItem, index) => {
+                tableData += `
+                    <tr style="text-align: center; vertical-align: middle">
+                        <td hidden></td>
+                        <td>
+                            <p class="fw-bold mb-1">${index + 1}</p>
+                        </td>    
+                        <td>
+                            <p class="fw-bold mb-1">${npmItem.nim}</p>
+                        </td>
+                        <td>
+                            <p class="fw-bold mb-1">${npmItem.tipe}</p>
+                        </td>
+                        <td>
+                            <p class="fw-bold mb-1">${npmItem.tahun}</p>
+                        </td>
+                        <td>
+                            <p class="fw-bold mb-1">${npmItem.nilai.join(', ')} dinilai oleh <b>${npmItem.penilai.join(', ')}</b></p>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-info m-1" data-nilai-npm="${npmItem.nim}">Detail</button>
+                        </td>
+                    </tr>`;
+            });
+
             // Menghitung banyaknya data
-            const totalData = data.data.length;
+            const totalData = npmArray.length;
 
             // Untuk menampilkan jumlah nilai sidang di html
             const jumlahNilaiSidangElement = CihuyId("jumlahNilaiMahasiswa");
@@ -87,7 +106,7 @@ CihuyDomReady(() => {
 
             // Tampilkan data pegawai ke dalam tabel
             document.getElementById("tablebody-nilai").innerHTML = tableData;
-    
+
             // Untuk Memunculkan Pagination Halamannya
             displayData(halamannow);
             updatePagination();
