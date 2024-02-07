@@ -64,7 +64,7 @@ CihuyDomReady(() => {
                                 <p class="fw-bold mb-1">${tahun}</p>
                             </td>
                             <td>
-                                <p class="fw-bold mb-1">${nilai.map(item => item.value).join(', ')} || ${getNameByCode(penilai)}</p>
+                                <p class="fw-bold mb-1">${nilai.map(item => item.value).join(', ')} dinilai oleh <b>${getNameByCode(penilai)}</b></p>
                             </td>
                             <td>
                                 <button type="button" class="btn btn-info m-1" data-nilai-npm="${nim}">Detail</button>
