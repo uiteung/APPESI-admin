@@ -72,10 +72,18 @@ CihuyDomReady(() => {
             const npmArray = Object.values(npmMap);
             npmArray.forEach((npmItem, index) => {
                 let nilaiHtml = "";
+                let totalNilai = 0; // Variabel untuk menyimpan total nilai
+            
                 for (let i = 0; i < npmItem.values.length; i++) {
                     nilaiHtml += `<p class="fw-bold mb-1">${npmItem.values[i]} dinilai oleh <b>${npmItem.penilais[i]}</b></p>`;
+            
+                    // Tambahkan nilai-nilai untuk dihitung rata-ratanya
+                    totalNilai += parseInt(npmItem.values[i]);
                 }
-
+            
+                // Hitung nilai rata-rata
+                const nilaiRataRata = totalNilai / npmItem.values.length;
+            
                 tableData += `
                     <tr style="text-align: center; vertical-align: middle">
                         <td hidden></td>
@@ -93,6 +101,9 @@ CihuyDomReady(() => {
                         </td>
                         <td>
                             ${nilaiHtml}
+                        </td>
+                        <td>
+                            <p class="fw-bold mb-1">${nilaiRataRata.toFixed(2)}</p> <!-- Tampilkan nilai rata-rata dengan 2 angka di belakang koma -->
                         </td>
                         <td>
                             <button type="button" class="btn btn-info m-1" data-nilai-npm="${npmItem.nim}">Detail</button>
