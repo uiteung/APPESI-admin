@@ -46,7 +46,8 @@ CihuyDomReady(() => {
             let tableData = "";
             data.data.forEach((item, index) => {
                 if (item.nilai) {
-                    const { nim, tipe, tahun, nilai } = item;
+                    const { nim, tipe, tahun, nilai, penilai } = item;
+                    const getNameByCode = (code) => codeToNameMapping[code] || "Tidak Ada";
                     tableData += `
                         <tr style="text-align: center; vertical-align: middle">
                             <td hidden></td>
@@ -63,7 +64,7 @@ CihuyDomReady(() => {
                                 <p class="fw-bold mb-1">${tahun}</p>
                             </td>
                             <td>
-                                <p class="fw-bold mb-1">${nilai.map(item => item.value).join(', ')}</p>
+                                <p class="fw-bold mb-1">${nilai.map(item => item.value).join(', ')} || ${getNameByCode(penilai)}</p>
                             </td>
                             <td>
                                 <button type="button" class="btn btn-info m-1" data-nilai-npm="${nim}">Detail</button>
