@@ -62,6 +62,7 @@ CihuyDomReady(() => {
                     // Your existing mapping logic here
                     tableData += `
                         <tr>
+                            <td hidden></td>
                             <td>
                                 <p class="fw-bold mb-1">${index + 1}</p>
                             </td>
