@@ -57,13 +57,13 @@ CihuyDomReady(() => {
                             nim,
                             tipe,
                             tahun,
-                            nilai: [],
-                            penilai: []
+                            values: [],
+                            penilais: []
                         };
                     }
                     
-                    npmMap[nim].nilai.push(nilai.map(item => item.value).join(', '));
-                    npmMap[nim].penilai.push(getNameByCode(penilai));
+                    npmMap[nim].values.push(nilai.map(item => item.value).join(', '));
+                    npmMap[nim].penilais.push(getNameByCode(penilai));
                 }
             });
 
@@ -71,6 +71,11 @@ CihuyDomReady(() => {
             // Mendapatkan array nilai dari objek npmMap
             const npmArray = Object.values(npmMap);
             npmArray.forEach((npmItem, index) => {
+                let nilaiHtml = "";
+                for (let i = 0; i < npmItem.values.length; i++) {
+                    nilaiHtml += `<p class="fw-bold mb-1">${npmItem.values[i]} dinilai oleh <b>${npmItem.penilais[i]}</b></p>`;
+                }
+
                 tableData += `
                     <tr style="text-align: center; vertical-align: middle">
                         <td hidden></td>
@@ -87,7 +92,7 @@ CihuyDomReady(() => {
                             <p class="fw-bold mb-1">${npmItem.tahun}</p>
                         </td>
                         <td>
-                            <p class="fw-bold mb-1">${npmItem.nilai.join(', ')} dinilai oleh <b>${npmItem.penilai.join(', ')}</b></p>
+                            ${nilaiHtml}
                         </td>
                         <td>
                             <button type="button" class="btn btn-info m-1" data-nilai-npm="${npmItem.nim}">Detail</button>
