@@ -188,7 +188,7 @@ CihuyDomReady(() => {
 // Fitur Search
 document.addEventListener("DOMContentLoaded", function () {
 	const searchInput = document.getElementById("searchInput");
-	const tableBody = document.getElementById("tablebody").getElementsByTagName("tr");
+	const tableBody = document.getElementById("tablebody-nilai").getElementsByTagName("tr");
 	searchInput.addEventListener("input", function () {
 		const searchText = searchInput.value.toLowerCase();
 
