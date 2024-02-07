@@ -48,28 +48,31 @@ CihuyDomReady(() => {
                 if (item.nilai) {
                     const { nim, tipe, tahun, nilai, penilai } = item;
                     const getNameByCode = (code) => codeToNameMapping[code] || "Tidak Ada";
-                    tableData += `
-                        <tr style="text-align: center; vertical-align: middle">
-                            <td hidden></td>
-                            <td>
-                                <p class="fw-bold mb-1">${index + 1}</p>
-                            </td>    
-                            <td>
-                                <p class="fw-bold mb-1">${nim}</p>
-                            </td>
-                            <td>
-                                <p class="fw-bold mb-1">${tipe}</p>
-                            </td>
-                            <td>
-                                <p class="fw-bold mb-1">${tahun}</p>
-                            </td>
-                            <td>
-                                <p class="fw-bold mb-1">${nilai.map(item => item.value).join(', ')} dinilai oleh <b>${getNameByCode(penilai)}</b></p>
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-info m-1" data-nilai-npm="${nim}">Detail</button>
-                            </td>
-                        </tr>`;
+    
+                    nilai.forEach((nilaiItem, nilaiIndex) => {
+                        tableData += `
+                            <tr style="text-align: center; vertical-align: middle">
+                                <td hidden></td>
+                                <td>
+                                    <p class="fw-bold mb-1">${index + 1}</p>
+                                </td>    
+                                <td>
+                                    <p class="fw-bold mb-1">${nim}</p>
+                                </td>
+                                <td>
+                                    <p class="fw-bold mb-1">${tipe}</p>
+                                </td>
+                                <td>
+                                    <p class="fw-bold mb-1">${tahun}</p>
+                                </td>
+                                <td>
+                                    <p class="fw-bold mb-1">${nilaiItem.value} dinilai oleh <b>${getNameByCode(penilai)}</b></p>
+                                </td>
+                                <td>
+                                    ${(nilaiIndex === 0) ? `<button type="button" class="btn btn-info m-1" data-nilai-npm="${nim}">Detail</button>` : ''}
+                                </td>
+                            </tr>`;
+                    });
                 }
             });
 
