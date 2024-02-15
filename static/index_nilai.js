@@ -82,7 +82,7 @@ CihuyDomReady(() => {
                 }
             
                 // Hitung nilai rata-rata
-                const nilaiRataRata = totalNilai / npmItem.values.length;
+                const nilaiRataRata = totalNilai / 8;
             
                 tableData += `
                     <tr style="text-align: center; vertical-align: middle">
