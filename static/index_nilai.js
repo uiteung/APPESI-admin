@@ -83,9 +83,6 @@ CihuyDomReady(() => {
             
                 // Hitung nilai rata-rata
                 const nilaiRataRata = totalNilai / npmItem.values.length;
-                
-                // Hitung total nilai pembimbing dan penguji, lalu bagikan dengan 8
-                const totalNilaiPembimbingPenguji = totalNilai / 8;
             
                 tableData += `
                     <tr style="text-align: center; vertical-align: middle">
@@ -107,9 +104,6 @@ CihuyDomReady(() => {
                         </td>
                         <td>
                             <p class="fw-bold mb-1">${nilaiRataRata.toFixed(2)}</p>
-                        </td>
-                        <td>
-                            <p class="fw-bold mb-1">${totalNilaiPembimbingPenguji.toFixed(2)}</p>
                         </td>
                         <td>
                             <button type="button" class="btn btn-info m-1" data-nilai-npm="${npmItem.nim}">Detail</button>
