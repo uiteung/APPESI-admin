@@ -14,7 +14,7 @@ const requestOptions = {
 // Ambil _npm dari URL
 const urlParams = new URLSearchParams(window.location.search);
 const _npm = urlParams.get('_npm');
-const GetNilaiByNPM = UrlGetNilaiByNPM + `/${_npm}`;
+const GetNilaiByNPM = UrlGetNilaiByNPM + `?npm=${_npm}`;
 
 // Untuk Set Value NPM
 setValue('npm', _npm);
