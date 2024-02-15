@@ -102,9 +102,9 @@ CihuyDomReady(() => {
                         <td>
                             ${nilaiHtml}
                         </td>
-                        <td>
-                            <p class="fw-bold mb-1">${nilaiRataRata.toFixed(2)}</p>
-                        </td>
+                        // <td>
+                        //     <p class="fw-bold mb-1">${nilaiRataRata.toFixed(2)}</p>
+                        // </td>
                         <td>
                             <button type="button" class="btn btn-info m-1" data-nilai-npm="${npmItem.nim}">Detail</button>
                         </td>
