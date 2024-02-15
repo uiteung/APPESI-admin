@@ -18,3 +18,31 @@ const GetNilaiByNPM = UrlGetNilaiByNPM + `/${_npm}`;
 
 // Untuk Set Value NPM
 setValue('npm', _npm);
+
+// Ambil data dari endpoint
+fetch(GetNilaiByNPM, requestOptions)
+    .then(response => response.json())
+    .then(data => {
+        // Ambil elemen tbody dari tabel
+        var tbody = document.getElementById("tablebody-nilai");
+
+        // Iterasi melalui data JSON dan membuat baris tabel untuk setiap entri
+        data.data.forEach(function(item) {
+            // Membuat baris tabel
+            var row = document.createElement("tr");
+            
+            // Mengisi kolom tabel dengan data
+            row.innerHTML = `
+                <td hidden></td>
+                <td>${item.penilai}</td>
+                <td>${item.nilai[0].value}</td>
+                <td>${item.nilai[1].value}</td>
+                <td>${item.nilai[2].value}</td>
+                <td>${item.nilai[3].value}</td>
+            `;
+            
+            // Menambahkan baris ke dalam tbody
+            tbody.appendChild(row);
+        });
+    })
+    .catch(error => console.log('Error fetching data:', error));
