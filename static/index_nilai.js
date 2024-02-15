@@ -128,7 +128,7 @@ CihuyDomReady(() => {
             detailNilaiButtons.forEach(button => {
                 button.addEventListener('click', (event) => {
                     const _npm = event.target.getAttribute('data-nilai-npm');
-                    window.location.href = `detail_nilai_p3.html?_npm=${_npm}`;
+                    window.location.href = `dosen/detail_nilai_p3.html?_npm=${_npm}`;
                 })
             })
         } else {
