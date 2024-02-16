@@ -55,10 +55,23 @@ fetch(GetNilaiByNPM, requestOptions)
                 <td>${item.nilai[1].value}</td>
                 <td>${item.nilai[2].value}</td>
                 <td>${item.nilai[3].value}</td>
+                <td>
+                    <button type="button" class="btn btn-info m-1" data-npm=${_npm} data-dosen=${item.penilai}>Update Nilai</button>
+                </td>  
             `;
             
             // Menambahkan baris ke dalam tbody
             tbody.appendChild(row);
         });
+
+        // Menambahkan event listener untuk button "Update"
+        const updateNilaiButtons = document.querySelectorAll('.btn-info');
+        updateNilaiButtons.forEach(button => {
+            button.addEventListener('click', (event) => {
+                const _npm = event.target.getAttribute('data-npm');
+                const _nidn = event.target.getAttribute('data-dosen');
+                window.location.href = `update_nilai_p3.html?_npm=${_npm}&_nidn=${_nidn}`;
+            })
+        })
     })
     .catch(error => console.log('Error fetching data:', error));
