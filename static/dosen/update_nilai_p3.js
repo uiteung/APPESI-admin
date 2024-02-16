@@ -48,10 +48,10 @@ async function nilaiMahasiswaP3(result) {
         document.getElementById('nilai2').value = nilai[1].value;
         document.getElementById('nilai3').value = nilai[2].value;
         document.getElementById('nilai4').value = nilai[3].value;
-        document.getElementById('poin1').value = nilai[0].assess_name;
-        document.getElementById('poin2').value = nilai[1].assess_name;
-        document.getElementById('poin3').value = nilai[2].assess_name;
-        document.getElementById('poin4').value = nilai[3].assess_name;
+        document.getElementById('poin1').innerText  = nilai[0].assess_name;
+        document.getElementById('poin2').innerText  = nilai[1].assess_name;
+        document.getElementById('poin3').innerText  = nilai[2].assess_name;
+        document.getElementById('poin4').innerText  = nilai[3].assess_name;
     } else {
         console.log(result);
     }
