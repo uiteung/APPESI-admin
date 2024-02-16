@@ -41,6 +41,7 @@ fetch(GetNilaiByNPM, requestOptions)
         // Ambil elemen tbody dari tabel
         var tbody = document.getElementById("tablebody-nilai");
         const getNameByCode = (code) => codeToNameMapping[code] || "Tidak Ada";
+        var totalNilai = 0;
 
         // Iterasi melalui data JSON dan membuat baris tabel untuk setiap entri
         data.data.forEach(function(item) {
@@ -62,7 +63,20 @@ fetch(GetNilaiByNPM, requestOptions)
             
             // Menambahkan baris ke dalam tbody
             tbody.appendChild(row);
+
+            // Tambahkan nilai-nilai
+            totalNilai += parseInt(item.nilai[0].value);
+            totalNilai += parseInt(item.nilai[1].value);
+            totalNilai += parseInt(item.nilai[2].value);
+            totalNilai += parseInt(item.nilai[3].value);
         });
+
+        // Hitung nilai rata-rata
+        var rataRata = totalNilai / 8;
+
+        // Tampilkan nilai rata-rata di elemen HTML
+        var avgNilaiElement = document.getElementById("avgNilai");
+        avgNilaiElement.textContent = "Nilai Akhir : " + rataRata.toFixed(2); // Menampilkan hingga dua desimal
 
         // Menambahkan event listener untuk button "Update"
         const updateNilaiButtons = document.querySelectorAll('.btn-info');
