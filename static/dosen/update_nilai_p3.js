@@ -35,15 +35,20 @@ const getNameByCode = (code) => codeToNameMapping[code] || "Tidak Ada";
 
 // Get Data dan Simpan di Form ketika sudah isi
 await getWithHeader(GetNilaiByNPM_NIDN, "LOGIN", token, nilaiMahasiswaP3);
+
 async function nilaiMahasiswaP3(result) {
     if (result.success) {
-        setValue('penilai', getNameByCode(result.data.nim))
-        setValue('npm', result.data.nim);
-        setValue('nilai1', result.data.nilai[0].value);
-        setValue('nilai2', result.data.nilai[1].value);
-        setValue('nilai3', result.data.nilai[2].value);
-        setValue('nilai4', result.data.nilai[3].value);
+        const data = result.data[0]; // Ambil data pertama dari array data
+        const nilai = data.nilai;
+
+        // Isi nilai dari JSON ke dalam input HTML
+        document.getElementById('penilai').value = getNameByCode(data.penilai);
+        document.getElementById('npm').value = data.nim;
+        document.getElementById('nilai1').value = nilai[0].value;
+        document.getElementById('nilai2').value = nilai[1].value;
+        document.getElementById('nilai3').value = nilai[2].value;
+        document.getElementById('nilai4').value = nilai[3].value;
     } else {
-        console.log(result)
+        console.log(result);
     }
 }
