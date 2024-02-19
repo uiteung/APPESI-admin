@@ -58,13 +58,13 @@ async function nilaiMahasiswaP3(result) {
 }
 
 // Untuk Update Nilai P3
-async function updateNilaiP3(newData) {
+function updateNilaiP3(newData) {
     const updateData = {
         "assessment_inputs" : newData 
     };
 
     try {
-        const  response = await fetch("https://kimteungbim.ulbi.ac.id/sidang/p3/nilai/", {
+        const response = fetch("https://kimteungbim.ulbi.ac.id/sidang/p3/nilai/", {
             method : 'PATCH',
             headers : {
                 'Content-Type' : 'application/json',
@@ -73,7 +73,7 @@ async function updateNilaiP3(newData) {
             body : JSON.stringify(updateData)
         });
 
-        const result = await response.json();
+        const result = response.json();
         // console.log('Respon dari server : ', result);
         console.log('Respon dari server : ', result);
         // SweetAlert success
@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 ];
 
                 // Panggil fungsi pembaruan nilai dengan nilai baru
-                updateNilaiMahasiswaP3(newValue);
+                updateNilaiP3(newValue);
             }
         });
     });
