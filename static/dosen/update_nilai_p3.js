@@ -42,7 +42,8 @@ async function nilaiMahasiswaP3(result) {
         const nilai = data.nilai;
 
         // Isi nilai dari JSON ke dalam input HTML
-        document.getElementById('penilai').value = getNameByCode(data.penilai);
+        // document.getElementById('penilai').value = getNameByCode(data.penilai);
+        document.getElementById('penilai').value = data.penilai;
         document.getElementById('npm').value = data.nim;
         document.getElementById('nilai1').value = nilai[0].value;
         document.getElementById('nilai2').value = nilai[1].value;
@@ -61,28 +62,51 @@ async function nilaiMahasiswaP3(result) {
 async function updateNilaiP3() {
     // Ambil nilai-nilai dari formulir
     const nim = document.getElementById('npm').value;
-    const prodi = document.getElementById('programStudi').value;
-    const tipeBimbingan = document.getElementById('tipeBimbingan').value;
-    const tahunAka = document.getElementById('thnAjaran').value;
+    const penilai = document.getElementById('penilai').value;
 
     // Ambil nilai-nilai poin dari formulir
     const nilai1 = document.getElementById('nilai1').value;
     const nilai2 = document.getElementById('nilai2').value;
     const nilai3 = document.getElementById('nilai3').value;
     const nilai4 = document.getElementById('nilai4').value;
+    const poin1 = document.getElementById('poin1').innerText;
+    const poin2 = document.getElementById('poin2').innerText;
+    const poin3 = document.getElementById('poin3').innerText;
+    const poin4 = document.getElementById('poin4').innerText;
 
     // Buat objek data baru hanya dengan atribut yang akan diperbarui
     const newData = {
+        "approved": true,
         "nim": nim,
-        "prodi": prodi,
-        "tipe_bimbingan": tipeBimbingan,
-        "tahun_aka": tahunAka,
+        "tipe_bimbingan": "p3",
+        "prodi": "14",
+        "tahun_aka": "2023-2024",
+        "penilai": penilai,
+        "create_at": new Date().toISOString(),
+        "update_at": new Date().toISOString(),
         "assessment_inputs": [
-            { "value": nilai1 },
-            { "value": nilai2 },
-            { "value": nilai3 },
-            { "value": nilai4 }
-        ]
+          {
+            "assess_name": poin1,
+            "assess_weight": 25,
+            "value": nilai1
+          },
+          {
+            "assess_name": poin2,
+            "assess_weight": 25,
+            "value": nilai2
+          },
+          {
+            "assess_name": poin3,
+            "assess_weight": 25,
+            "value": nilai3
+          },
+          {
+            "assess_name": poin4,
+            "assess_weight": 25,
+            "value": nilai4
+        }
+      ]
+      
     };
 
     try {
