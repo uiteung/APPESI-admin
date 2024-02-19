@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Jika pengguna menekan tombol "Ya, perbarui"
             if (result.isConfirmed) {
                 // Panggil fungsi pembaruan nilai dengan nilai baru
-                updateNilaiP3(newValue);
+                updateNilaiP3();
             }
         });
     });
