@@ -58,7 +58,7 @@ async function nilaiMahasiswaP3(result) {
 }
 
 // Untuk Update Nilai P3
-function updateNilaiP3(newData) {
+function updateNilaiP3() {
     // Ambil nilai-nilai dari formulir
     const nim = document.getElementById('npm').value;
     const prodi = document.getElementById('programStudi').value;
