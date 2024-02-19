@@ -58,7 +58,7 @@ async function nilaiMahasiswaP3(result) {
 }
 
 // Untuk Update Nilai P3
-function updateNilaiP3() {
+async function updateNilaiP3() {
     // Ambil nilai-nilai dari formulir
     const nim = document.getElementById('npm').value;
     const prodi = document.getElementById('programStudi').value;
@@ -86,17 +86,16 @@ function updateNilaiP3() {
     };
 
     try {
-        const response = fetch("https://kimteungbim.ulbi.ac.id/sidang/p3/nilai/", {
+        const response = await fetch("https://kimteungbim.ulbi.ac.id/sidang/p3/nilai/", {
             method : 'PUT',
             headers : {
                 'Content-Type' : 'application/json',
                 'login' : token
             },
-            body : JSON.stringify(updateData)
+            body : JSON.stringify(newData)
         });
 
-        const result = response.json();
-        // console.log('Respon dari server : ', result);
+        const result = await response.json();
         console.log('Respon dari server : ', result);
         // SweetAlert success
         Swal.fire({
@@ -105,7 +104,7 @@ function updateNilaiP3() {
             text: 'Nilai berhasil diperbarui'
         });
     } catch (error) {
-        // console.error('Terjadi kesalahan : ', error);
+        console.error('Terjadi kesalahan : ', error);
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
