@@ -1,6 +1,6 @@
+import { data } from "jquery";
 import { token } from "../controller/cookies.js";
 import { UrlGetNilaiByNPMNIDN } from "../controller/template.js";
-import { setValue } from "https://cdn.jsdelivr.net/gh/jscroot/element@0.0.5/croot.js";
 import { getWithHeader } from "https://cdn.jsdelivr.net/gh/jscroot/api@0.0.1/croot.js";
 
 var header = new Headers();
@@ -56,3 +56,84 @@ async function nilaiMahasiswaP3(result) {
         console.log(result);
     }
 }
+
+// Untuk Update Nilai P3
+async function updateNilaiP3(newData) {
+    const updateData = {
+        "assessment_inputs" : newData 
+    };
+
+    try {
+        const  response = await fetch("https://kimteungbim.ulbi.ac.id/sidang/p3/nilai/", {
+            method : 'PATCH',
+            headers : {
+                'Content-Type' : 'application/json',
+                'login' : token
+            },
+            body : JSON.stringify(updateData)
+        });
+
+        const result = await response.json();
+        // console.log('Respon dari server : ', result);
+        console.log('Respon dari server : ', result);
+        // SweetAlert success
+        Swal.fire({
+            icon: 'success',
+            title: 'Sukses!',
+            text: 'Nilai berhasil diperbarui'
+        });
+    } catch (error) {
+        // console.error('Terjadi kesalahan : ', error);
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Terjadi kesalahan saat memperbarui nilai'
+        });
+    }
+}
+
+// Event listener untuk tombol "Update"
+document.addEventListener('DOMContentLoaded', function() {
+    const updateButton = document.getElementById('updateButton');
+    updateButton.addEventListener('click', function() {
+        // Tampilkan alert konfirmasi menggunakan SweetAlert
+        Swal.fire({
+            title: 'Konfirmasi',
+            text: 'Apakah Anda yakin ingin memperbarui nilai?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Ya, perbarui',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            // Jika pengguna menekan tombol "Ya, perbarui"
+            if (result.isConfirmed) {
+                // Dapatkan nilai baru dari input
+                const newValue = [
+                    {
+                        "assess_name": document.getElementById('poin1').innerText,
+                        "assess_weight": 25,
+                        "value": parseInt(document.getElementById('nilai1').value)
+                    },
+                    {
+                        "assess_name": document.getElementById('poin2').innerText,
+                        "assess_weight": 25,
+                        "value": parseInt(document.getElementById('nilai2').value)
+                    },
+                    {
+                        "assess_name": document.getElementById('poin3').innerText,
+                        "assess_weight": 25,
+                        "value": parseInt(document.getElementById('nilai3').value)
+                    },
+                    {
+                        "assess_name": document.getElementById('poin4').innerText,
+                        "assess_weight": 25,
+                        "value": parseInt(document.getElementById('nilai4').value)
+                    }
+                ];
+
+                // Panggil fungsi pembaruan nilai dengan nilai baru
+                updateNilaiMahasiswaP3(newValue);
+            }
+        });
+    });
+});
