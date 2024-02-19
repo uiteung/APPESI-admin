@@ -12,3 +12,4 @@ export let UrlPostPendaftaranSidangP3 = "https://p3-be.ulbi.ac.id/api/sidang/sya
 export let UrlPostRevisi = "https://kimteungbim.ulbi.ac.id/revisi/";
 export let UrlPostRevisiP3 = "https://kimteungbim.ulbi.ac.id/sidang/p3/revisi/";
 export let UrlPostNilaiP3 = "https://kimteungbim.ulbi.ac.id/sidang/p3/nilai/";
+export let UrlPutNilaiP3 = "https://kimteungbim.ulbi.ac.id/sidang/p3/nilai/";
