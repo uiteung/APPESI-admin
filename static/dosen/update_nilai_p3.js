@@ -44,7 +44,7 @@ async function nilaiMahasiswaP3(result) {
         // Isi nilai dari JSON ke dalam input HTML
         // document.getElementById('penilai').value = getNameByCode(data.penilai);
         document.getElementById('penilai').value = data.penilai;
-        document.getElementById('npm').value = data.nim;
+        document.getElementById('npm').value = getNameByCode(data.nim);
         document.getElementById('nilai1').value = nilai[0].value;
         document.getElementById('nilai2').value = nilai[1].value;
         document.getElementById('nilai3').value = nilai[2].value;
