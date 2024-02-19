@@ -65,7 +65,7 @@ function updateNilaiP3(newData) {
 
     try {
         const response = fetch("https://kimteungbim.ulbi.ac.id/sidang/p3/nilai/", {
-            method : 'PATCH',
+            method : 'PUT',
             headers : {
                 'Content-Type' : 'application/json',
                 'login' : token
