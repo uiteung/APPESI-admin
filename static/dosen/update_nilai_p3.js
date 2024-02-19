@@ -42,9 +42,8 @@ async function nilaiMahasiswaP3(result) {
         const nilai = data.nilai;
 
         // Isi nilai dari JSON ke dalam input HTML
-        // document.getElementById('penilai').value = getNameByCode(data.penilai);
-        document.getElementById('penilai').value = data.penilai;
-        document.getElementById('npm').value = getNameByCode(data.nim);
+        document.getElementById('penilai').value = getNameByCode(data.penilai);
+        document.getElementById('npm').value = data.nim;
         document.getElementById('nilai1').value = nilai[0].value;
         document.getElementById('nilai2').value = nilai[1].value;
         document.getElementById('nilai3').value = nilai[2].value;
@@ -57,104 +56,3 @@ async function nilaiMahasiswaP3(result) {
         console.log(result);
     }
 }
-
-// Untuk Update Nilai P3
-function updateNilaiP3() {
-    // Ambil nilai-nilai dari formulir
-    const nim = document.getElementById('npm').value;
-    const penilai = document.getElementById('penilai').value;
-
-    // Ambil nilai-nilai poin dari formulir
-    const nilai1 = document.getElementById('nilai1').value;
-    const nilai2 = document.getElementById('nilai2').value;
-    const nilai3 = document.getElementById('nilai3').value;
-    const nilai4 = document.getElementById('nilai4').value;
-    const poin1 = document.getElementById('poin1').innerText;
-    const poin2 = document.getElementById('poin2').innerText;
-    const poin3 = document.getElementById('poin3').innerText;
-    const poin4 = document.getElementById('poin4').innerText;
-
-    // Buat objek data baru hanya dengan atribut yang akan diperbarui
-    const newData = {
-        "approved": true,
-        "nim": nim,
-        "tipe_bimbingan": "p3",
-        "prodi": "14",
-        "tahun_aka": "2023-2024",
-        "penilai": penilai,
-        "create_at": new Date().toISOString(),
-        "update_at": new Date().toISOString(),
-        "assessment_inputs": [
-          {
-            "assess_name": poin1,
-            "assess_weight": 25,
-            "value": nilai1
-          },
-          {
-            "assess_name": poin2,
-            "assess_weight": 25,
-            "value": nilai2
-          },
-          {
-            "assess_name": poin3,
-            "assess_weight": 25,
-            "value": nilai3
-          },
-          {
-            "assess_name": poin4,
-            "assess_weight": 25,
-            "value": nilai4
-        }
-      ]
-      
-    };
-
-    try {
-        const response = fetch("https://kimteungbim.ulbi.ac.id/sidang/p3/nilai/", {
-            method : 'PUT',
-            headers : {
-                'Content-Type' : 'application/json',
-                'login' : token
-            },
-            body : JSON.stringify(newData)
-        });
-
-        const result = response.json();
-        console.log('Respon dari server : ', result);
-        // SweetAlert success
-        Swal.fire({
-            icon: 'success',
-            title: 'Sukses!',
-            text: 'Nilai berhasil diperbarui'
-        });
-    } catch (error) {
-        console.error('Terjadi kesalahan : ', error);
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Terjadi kesalahan saat memperbarui nilai'
-        });
-    }
-}
-
-// Event listener untuk tombol "Update"
-document.addEventListener('DOMContentLoaded', function() {
-    const updateButton = document.getElementById('updateButton');
-    updateButton.addEventListener('click', function() {
-        // Tampilkan alert konfirmasi menggunakan SweetAlert
-        Swal.fire({
-            title: 'Konfirmasi',
-            text: 'Apakah Anda yakin ingin memperbarui nilai?',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Ya, perbarui',
-            cancelButtonText: 'Batal'
-        }).then((result) => {
-            // Jika pengguna menekan tombol "Ya, perbarui"
-            if (result.isConfirmed) {
-                // Panggil fungsi pembaruan nilai dengan nilai baru
-                updateNilaiP3();
-            }
-        });
-    });
-});
