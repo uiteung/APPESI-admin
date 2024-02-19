@@ -59,8 +59,30 @@ async function nilaiMahasiswaP3(result) {
 
 // Untuk Update Nilai P3
 function updateNilaiP3(newData) {
-    const updateData = {
-        "assessment_inputs" : newData 
+    // Ambil nilai-nilai dari formulir
+    const nim = document.getElementById('npm').value;
+    const prodi = document.getElementById('programStudi').value;
+    const tipeBimbingan = document.getElementById('tipeBimbingan').value;
+    const tahunAka = document.getElementById('thnAjaran').value;
+
+    // Ambil nilai-nilai poin dari formulir
+    const nilai1 = document.getElementById('nilai1').value;
+    const nilai2 = document.getElementById('nilai2').value;
+    const nilai3 = document.getElementById('nilai3').value;
+    const nilai4 = document.getElementById('nilai4').value;
+
+    // Buat objek data baru hanya dengan atribut yang akan diperbarui
+    const newData = {
+        "nim": nim,
+        "prodi": prodi,
+        "tipe_bimbingan": tipeBimbingan,
+        "tahun_aka": tahunAka,
+        "assessment_inputs": [
+            { "value": nilai1 },
+            { "value": nilai2 },
+            { "value": nilai3 },
+            { "value": nilai4 }
+        ]
     };
 
     try {
@@ -107,30 +129,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }).then((result) => {
             // Jika pengguna menekan tombol "Ya, perbarui"
             if (result.isConfirmed) {
-                // Dapatkan nilai baru dari input
-                const newValue = [
-                    {
-                        "assess_name": document.getElementById('poin1').innerText,
-                        "assess_weight": 25,
-                        "value": parseInt(document.getElementById('nilai1').value)
-                    },
-                    {
-                        "assess_name": document.getElementById('poin2').innerText,
-                        "assess_weight": 25,
-                        "value": parseInt(document.getElementById('nilai2').value)
-                    },
-                    {
-                        "assess_name": document.getElementById('poin3').innerText,
-                        "assess_weight": 25,
-                        "value": parseInt(document.getElementById('nilai3').value)
-                    },
-                    {
-                        "assess_name": document.getElementById('poin4').innerText,
-                        "assess_weight": 25,
-                        "value": parseInt(document.getElementById('nilai4').value)
-                    }
-                ];
-
                 // Panggil fungsi pembaruan nilai dengan nilai baru
                 updateNilaiP3(newValue);
             }
