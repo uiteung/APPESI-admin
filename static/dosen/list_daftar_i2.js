@@ -67,19 +67,16 @@ CihuyDomReady(() => {
                                 <p class="fw-bold mb-1">${index + 1}</p>
                             </td>
                             <td>
-                                <p class="fw-bold mb-1">${values.npm_1}</p>
+                                <p class="fw-bold mb-1">${values.npm}</p>
                             </td>
                             <td>
-                                <p class="fw-bold mb-1">${values.npm2}</p>
+                                <p class="fw-bold mb-1">${getNameByCode(values.pembimbing1)}</p>
                             </td>
                             <td>
-                                <p class="fw-bold mb-1">${getNameByCode(values.pembimbing)}</p>
+                                <p class="fw-bold mb-1">${values.url_proposal_penelitian}</p>
                             </td>
                             <td>
-                                <p class="fw-bold mb-1">${getNameByCode(jadwal.penguji2)}</p>
-                            </td>
-                            <td>
-                                <p class="fw-bold mb-1">${waktuSidangFormatted}</p>
+                                <p class="fw-bold mb-1">${values.url_plagiarisme_proposal}</p>
                             </td>
                         </tr>`;
                 }
