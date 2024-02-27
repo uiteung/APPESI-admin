@@ -1,8 +1,8 @@
 // Import library yang dibutuhkan
 import { CihuyDomReady, CihuyQuerySelector } from "https://c-craftjs.github.io/table/table.js";
 import { CihuyId } from "https://c-craftjs.github.io/element/element.js";
-import { UrlGetAllPersyaratan } from "./controller/template.js";
-import { token } from "./controller/cookies.js"
+import { UrlGetPendaftaranI2 } from "../controller/template.js";
+import { token } from "../controller/cookies.js"
 
 // Get Data Program Studi
 CihuyDomReady(() => {
@@ -37,7 +37,7 @@ CihuyDomReady(() => {
     };
 
     // Untuk Get All Data Pendaftar
-    fetch(UrlGetAllPersyaratan, requestOptions)
+    fetch(UrlGetPendaftaranI2, requestOptions)
     .then((result) => {
     return result.json();
     })
@@ -47,14 +47,6 @@ CihuyDomReady(() => {
             data.data.forEach((item, index) => {
                 if (item.persyaratan) {
                     const values = item.persyaratan;
-                    const jadwal = item.jadwal;
-
-                    // Format tanggal
-                    const waktuSidangFormatted = new Date(jadwal.waktuSidang).toLocaleDateString('id-ID', {
-                        day: 'numeric',
-                        month: 'long',
-                        year: 'numeric'
-                    });
 
                     // Function untuk ambil nama dosen dari NIDN
                     const getNameByCode = (code) => codeToNameMapping[code] || 'Tidak Ada';
