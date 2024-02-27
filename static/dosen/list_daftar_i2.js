@@ -82,7 +82,7 @@ CihuyDomReady(() => {
             // Untuk menampilkan jumlah pengajuan sidang di html
             const jumlahPendaftaranI2Element = CihuyId("jumlahPendaftaranI2");
             if (jumlahPendaftaranI2Element) {
-                jumlahPendaftaranI2Element.innerText = `Jumlah Pengajuan: ${totalData}`;
+                jumlahPendaftaranI2Element.innerText = `Jumlah Pendaftaran: ${totalData}`;
             }
     
             // Untuk Memunculkan Pagination Halamannya
