@@ -45,8 +45,8 @@ CihuyDomReady(() => {
         if (data && Array.isArray(data.data)) {
             let tableData = "";
             data.data.forEach((item, index) => {
-                if (item.persyaratan) {
-                    const values = item.persyaratan;
+                if (item.pendaftaran) {
+                    const values = item.pendaftaran;
 
                     // Function untuk ambil nama dosen dari NIDN
                     const getNameByCode = (code) => codeToNameMapping[code] || 'Tidak Ada';
@@ -80,9 +80,9 @@ CihuyDomReady(() => {
             const totalData = data.data.length;
 
             // Untuk menampilkan jumlah pengajuan sidang di html
-            const jumlahPengjuanSidangElement = CihuyId("jumlahPengjuanSidang");
-            if (jumlahPengjuanSidangElement) {
-                jumlahPengjuanSidangElement.innerText = `Jumlah Pengajuan: ${totalData}`;
+            const jumlahPendaftaranI2Element = CihuyId("jumlahPendaftaranI2");
+            if (jumlahPendaftaranI2Element) {
+                jumlahPendaftaranI2Element.innerText = `Jumlah Pengajuan: ${totalData}`;
             }
     
             // Untuk Memunculkan Pagination Halamannya
