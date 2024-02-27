@@ -6,6 +6,7 @@ export let UrlGetPersyaratanByNIDN = "https://p3-be.ulbi.ac.id/api/sidang/syarat
 export let UrlGetAllNilaiP3 = "https://kimteungbim.ulbi.ac.id/sidang/p3/nilai";
 export let UrlGetNilaiByNPM = "https://kimteungbim.ulbi.ac.id/sidang/p3/npmnilai";
 export let UrlGetNilaiByNPMNIDN = "https://kimteungbim.ulbi.ac.id/sidang/p3/nilainimnidn";
+export let UrlGetPendaftaranI2 = "https://kimteungbim.ulbi.ac.id/i2/pengajuan";
 
 // Endpoint POST
 export let UrlPostPendaftaranSidangP3 = "https://p3-be.ulbi.ac.id/api/sidang/syarat";
