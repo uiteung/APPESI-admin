@@ -33,28 +33,31 @@ CihuyDomReady(() => {
                 document.getElementById("placeholder-pm").parentNode.setAttribute("hidden", "true");
                 // Append to bodypm if approval is false and catatan is empty
                 rowData.innerHTML = `
-                  <div class="col-md-6">
-                      <div class="card text-white bg-grey mb-2" style="min-height: 175px">
-                          <div class="card-body">
-                              <h4 id="pm-number">${ajuan.npm}</h4>
-                              <h5 class="card-title">${ajuan.judul_penelitian}</h5>
-                          </div>
-                          <div class="row">
-                              <div class="col">
-                                  <button type="button" class="w-100 btn btn-outline-primary">Proposal</button>
-                              </div>
-                              <div class="col">
-                                  <button type="button" class="w-100 btn btn-outline-primary">Pendukung</button>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
+                <a href="detail.html?npm=${ajuan.npm}">
+                <div class="col-md-6">
+                    <div class="card text-white bg-grey mb-2" style="min-height: 175px">
+                        <div class="card-body">
+                            <h4 id="pm-number">${ajuan.npm}</h4>
+                            <h5 class="card-title">${ajuan.judul_penelitian}</h5>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <button type="button" class="w-100 btn btn-outline-primary">Proposal</button>
+                            </div>
+                            <div class="col">
+                                <button type="button" class="w-100 btn btn-outline-primary">Pendukung</button>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                  </a>
                 `;
                 bodypm.appendChild(rowData);
               } else if (!ajuan.approval && ajuan.catatan !== "") {
                 document.getElementById("placeholder-rp").parentNode.setAttribute("hidden", "true");
                 // Append to bodyrp if approval is false and catatan is not empty
                 rowData.innerHTML = `
+                  <a href="detail.html?npm=${ajuan.npm}">
                   <div class="col-md-6">
                       <div class="card text-white bg-grey mb-2" style="min-height: 175px">
                           <div class="card-body">
@@ -70,29 +73,32 @@ CihuyDomReady(() => {
                               </div>
                           </div>
                       </div>
-                  </div>
-                `;
+                      </div>
+                    </a>
+                      `;
                 bodyrp.appendChild(rowData);
               } else {
                 document.getElementById("placeholder-na").parentNode.setAttribute("hidden", "true");
                 // Append to bodyna for other cases
                 rowData.innerHTML = `
-                  <div class="col-md-6">
-                      <div class="card text-white bg-grey mb-2" style="min-height: 175px">
-                          <div class="card-body">
-                              <h4 id="pm-number">${ajuan.npm}</h4>
-                              <h5 class="card-title">${ajuan.judul_penelitian}</h5>
-                          </div>
-                          <div class="row">
-                              <div class="col">
-                                  <button type="button" class="w-100 btn btn-outline-primary">Proposal</button>
-                              </div>
-                              <div class="col">
-                                  <button type="button" class="w-100 btn btn-outline-primary">Pendukung</button>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
+                <a href="detail.html?npm=${ajuan.npm}">
+                <div class="col-md-6">
+                    <div class="card text-white bg-grey mb-2" style="min-height: 175px">
+                        <div class="card-body">
+                            <h4 id="pm-number">${ajuan.npm}</h4>
+                            <h5 class="card-title">${ajuan.judul_penelitian}</h5>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <button type="button" class="w-100 btn btn-outline-primary">Proposal</button>
+                            </div>
+                            <div class="col">
+                                <button type="button" class="w-100 btn btn-outline-primary">Pendukung</button>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                  </a>
                 `;
                 bodyna.appendChild(rowData);
               }
