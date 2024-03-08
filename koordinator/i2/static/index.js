@@ -28,8 +28,9 @@ CihuyDomReady(() => {
           if (data.success) {
             data.data.forEach((ajuan) => {
               const rowData = document.createElement("div");
-  
+
               if (!ajuan.approval && ajuan.catatan === "") {
+                document.getElementById("placeholder-pm").parentNode.setAttribute("hidden", "true");
                 // Append to bodypm if approval is false and catatan is empty
                 rowData.innerHTML = `
                   <div class="col-md-6">
@@ -51,6 +52,7 @@ CihuyDomReady(() => {
                 `;
                 bodypm.appendChild(rowData);
               } else if (!ajuan.approval && ajuan.catatan !== "") {
+                document.getElementById("placeholder-rp").parentNode.setAttribute("hidden", "true");
                 // Append to bodyrp if approval is false and catatan is not empty
                 rowData.innerHTML = `
                   <div class="col-md-6">
@@ -72,6 +74,7 @@ CihuyDomReady(() => {
                 `;
                 bodyrp.appendChild(rowData);
               } else {
+                document.getElementById("placeholder-na").parentNode.setAttribute("hidden", "true");
                 // Append to bodyna for other cases
                 rowData.innerHTML = `
                   <div class="col-md-6">
