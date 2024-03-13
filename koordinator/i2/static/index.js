@@ -1,9 +1,31 @@
 import { CihuyDomReady } from "https://c-craftjs.github.io/table/table.js";
 import { CihuyId } from "https://c-craftjs.github.io/element/element.js";
-import { UrlGetAllPendaftaranI2 } from "../../../static/controller/template.js";
+import { UrlGetAllPendaftaranI2, UrlGetSuperRole } from "../../../static/controller/template.js";
 import { token } from "../../../static/controller/cookies.js";
 
-// Wait for the DOM to be fully loaded
+const requestOptions = {
+    method: "GET",
+    headers: {
+        LOGIN: token,
+        "Content-Type": "application/json",
+    },
+};
+
+fetch(UrlGetSuperRole, requestOptions)
+  .then(response => response.json())
+  .then(data => {
+    if (data.success === false) {
+      window.location.href = '/';
+    } else {
+      // Lakukan sesuatu jika respons berhasil
+      console.log('API response success');
+    }
+  })
+  .catch(error => {
+    // Tangani error jika fetch gagal
+    console.error('Error fetching data:', error);
+  });
+
 // Wait for the DOM to be fully loaded
 CihuyDomReady(() => {
   const bodypm = CihuyId("pm-body");
@@ -25,13 +47,6 @@ CihuyDomReady(() => {
   };
   // Check if all required elements are available
   if (bodypm && bodyna && bodyrp) {
-      const requestOptions = {
-          method: "GET",
-          headers: {
-              LOGIN: token,
-              "Content-Type": "application/json",
-          },
-      };
 
       fetch(UrlGetAllPendaftaranI2, requestOptions)
           .then((result) => result.json())
