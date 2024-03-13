@@ -47,10 +47,10 @@ CihuyDomReady(() => {
                             <td>${getNameByCode(ajuan.pembimbing1)}</td>
                             <td>${getNameByCode(ajuan.pembimbing2)}</td>
                             <td>
-                                <a class="btn btn-primary" href="${ajuan.url_proposal_penelitian}" role="button">Proposal</a>
+                                <a class="btn btn-primary" href="${ajuan.url_proposal_penelitian}" role="button"><i class="bi bi-eye"></i></a>
                             </td>
                             <td>
-                                <a class="btn btn-primary" href="${ajuan.url_plagiarisme_proposal}" role="button">Portofolio</a>
+                                <a class="btn btn-primary" href="${ajuan.url_plagiarisme_proposal}" role="button"><i class="bi bi-eye"></i></a>
                             </td>
                         </tr>
                     `;
