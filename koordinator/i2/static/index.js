@@ -6,112 +6,56 @@ import { token } from "../../../static/controller/cookies.js";
 // Wait for the DOM to be fully loaded
 // Wait for the DOM to be fully loaded
 CihuyDomReady(() => {
-    const bodypm = CihuyId("pm-body");
-    const bodyna = CihuyId("na-body");
-    const bodyrp = CihuyId("rp-body");
-  
-    // Check if all required elements are available
-    if (bodypm && bodyna && bodyrp) {
-      const requestOptions = {
-        method: "GET",
-        headers: {
-          LOGIN: token,
-          "Content-Type": "application/json",
-        },
-      };
-  
-      fetch(UrlGetAllPendaftaranI2, requestOptions)
-        .then((result) => {
-          return result.json();
-        })
-        .then((data) => {
-          if (data.success) {
-            data.data.forEach((ajuan) => {
-              const rowData = document.createElement("div");
+  const bodypm = CihuyId("pm-body");
+  const bodyna = CihuyId("na-body");
+  const bodyrp = CihuyId("rp-body");
 
-              if (!ajuan.approval && ajuan.catatan === "") {
-                document.getElementById("placeholder-pm").parentNode.setAttribute("hidden", "true");
-                // Append to bodypm if approval is false and catatan is empty
-                rowData.innerHTML = `
-                <a href="detail.html?npm=${ajuan.npm}">
-                <div class="col-md-6">
-                    <div class="card text-white bg-grey mb-2" style="min-height: 175px">
-                        <div class="card-body">
-                            <h4 id="pm-number">${ajuan.npm}</h4>
-                            <h5 class="card-title">${ajuan.judul_penelitian}</h5>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <button type="button" class="w-100 btn btn-outline-primary">Proposal</button>
-                            </div>
-                            <div class="col">
-                                <button type="button" class="w-100 btn btn-outline-primary">Pendukung</button>
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-                  </a>
-                `;
-                bodypm.appendChild(rowData);
-              } else if (!ajuan.approval && ajuan.catatan !== "") {
-                document.getElementById("placeholder-rp").parentNode.setAttribute("hidden", "true");
-                // Append to bodyrp if approval is false and catatan is not empty
-                rowData.innerHTML = `
-                  <a href="detail.html?npm=${ajuan.npm}">
-                  <div class="col-md-6">
-                      <div class="card text-white bg-grey mb-2" style="min-height: 175px">
-                          <div class="card-body">
-                              <h4 id="pm-number">${ajuan.npm}</h4>
-                              <h5 class="card-title">${ajuan.judul_penelitian}</h5>
-                          </div>
-                          <div class="row">
-                              <div class="col">
-                                  <button type="button" class="w-100 btn btn-outline-primary">Proposal</button>
-                              </div>
-                              <div class="col">
-                                  <button type="button" class="w-100 btn btn-outline-primary">Pendukung</button>
-                              </div>
-                          </div>
-                      </div>
-                      </div>
-                    </a>
+  // Check if all required elements are available
+  if (bodypm && bodyna && bodyrp) {
+      const requestOptions = {
+          method: "GET",
+          headers: {
+              LOGIN: token,
+              "Content-Type": "application/json",
+          },
+      };
+
+      fetch(UrlGetAllPendaftaranI2, requestOptions)
+          .then((result) => result.json())
+          .then((data) => {
+              if (data.success) {
+                  data.data.forEach((ajuan) => {
+                      let rowData = `
+                          <tr>
+                              <td>${ajuan.npm}</td>
+                              <td>${ajuan.judul_penelitian}</td>
+                              <td>${ajuan.pembimbing1}</td>
+                              <td>${ajuan.pembimbing2}</td>
+                              <td>
+                                  <a class="btn btn-primary" href="${ajuan.url_proposal_penelitian}" role="button">Proposal</a>
+                              </td>
+                              <td>
+                                  <a class="btn btn-primary" href="${ajuan.url_plagiarisme_proposal}" role="button">Portofolio</a>
+                              </td>
+                          </tr>
                       `;
-                bodyrp.appendChild(rowData);
+
+                      if (!ajuan.approval && ajuan.catatan === "") {
+                          bodypm.innerHTML += rowData;
+                      } else if (!ajuan.approval && ajuan.catatan !== "") {
+                          bodyrp.innerHTML += rowData;
+                      } else {
+                          bodyna.innerHTML += rowData;
+                      }
+                  });
               } else {
-                document.getElementById("placeholder-na").parentNode.setAttribute("hidden", "true");
-                // Append to bodyna for other cases
-                rowData.innerHTML = `
-                <a href="detail.html?npm=${ajuan.npm}">
-                <div class="col-md-6">
-                    <div class="card text-white bg-grey mb-2" style="min-height: 175px">
-                        <div class="card-body">
-                            <h4 id="pm-number">${ajuan.npm}</h4>
-                            <h5 class="card-title">${ajuan.judul_penelitian}</h5>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <button type="button" class="w-100 btn btn-outline-primary">Proposal</button>
-                            </div>
-                            <div class="col">
-                                <button type="button" class="w-100 btn btn-outline-primary">Pendukung</button>
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-                  </a>
-                `;
-                bodyna.appendChild(rowData);
+                  console.error("Status is not true.");
               }
-            });
-          } else {
-            console.error("Status is not true.");
-          }
-        })
-        .catch(error => {
-            console.error("Error fetching data:", error);
-        });
-    } else {
+          })
+          .catch((error) => {
+              console.error("Error fetching data:", error);
+          });
+  } else {
       console.error("One or more required elements not found.");
-    }
-  });
-  
+  }
+});
