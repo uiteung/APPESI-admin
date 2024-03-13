@@ -41,17 +41,33 @@ CihuyDomReady(() => {
                       const getNameByCode = (code) => codeToNameMapping[code] || 'Tidak Ada';
 
                       let rowData = `
+                      <div id="popupContainer" class="modal fade" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                            <div class="modal-body">
+                                <!-- The iframe will be dynamically added here -->
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+
                       <tr>
                           <td>${ajuan.npm}</td>
                           <td><a href="./detail.html?npm=${ajuan.npm}">${ajuan.judul_penelitian}</a></td>
                           <td>${getNameByCode(ajuan.pembimbing1)}</td>
                           <td>${getNameByCode(ajuan.pembimbing2)}</td>
+
                           <td>
-                              <a class="btn btn-primary" href="${ajuan.url_proposal_penelitian}" role="button"><i class="bi bi-eye"></i></a>
-                          </td>
-                          <td>
-                              <a class="btn btn-primary" href="${ajuan.url_plagiarisme_proposal}" role="button"><i class="bi bi-eye"></i></a>
-                          </td>
+                            <button class="btn btn-primary view-proposal" data-url="${ajuan.url_proposal_penelitian}">
+                                <i class="bi bi-eye"></i>
+                            </button>
+                            </td>
+                            <td>
+                            <button class="btn btn-primary view-plagiarism" data-url="${ajuan.url_plagiarisme_proposal}">
+                                <i class="bi bi-eye"></i>
+                            </button>
+                         </td>
+                          
                           <td>
                               <a class="btn btn-success" href="${ajuan.url_plagiarisme_proposal}" role="button"><i class="bi bi-check-circle"></i></a>
                               <a class="btn btn-danger" href="${ajuan.url_plagiarisme_proposal}" role="button"><i class="bi bi-x-circle"></i></a>
@@ -77,3 +93,27 @@ CihuyDomReady(() => {
       console.error("One or more required elements not found.");
   }
 });
+
+document.addEventListener('click', function(event) {
+    if (event.target.classList.contains('view-proposal') || event.target.classList.contains('view-plagiarism')) {
+      const url = event.target.getAttribute('data-url');
+      if (url) {
+        openPopupWithIframe(url);
+      }
+    }
+  });
+  
+  function openPopupWithIframe(url) {
+    const iframe = document.createElement('iframe');
+    iframe.src = url;
+    iframe.style.width = '100%';
+    iframe.style.height = '860px';
+    iframe.setAttribute('frameborder', '0');
+    iframe.setAttribute('allowfullscreen', '');
+  
+    const modalBody = document.querySelector('.modal-body');
+    modalBody.innerHTML = '';
+    modalBody.appendChild(iframe);
+  
+    $('#popupContainer').modal('show');
+  }
