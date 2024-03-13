@@ -41,23 +41,23 @@ CihuyDomReady(() => {
                       const getNameByCode = (code) => codeToNameMapping[code] || 'Tidak Ada';
 
                       let rowData = `
-                        <tr>
-                            <td>${ajuan.npm}</td>
-                            <td>${ajuan.judul_penelitian}</td>
-                            <td>${getNameByCode(ajuan.pembimbing1)}</td>
-                            <td>${getNameByCode(ajuan.pembimbing2)}</td>
-                            <td>
-                                <a class="btn btn-primary" href="${ajuan.url_proposal_penelitian}" role="button"><i class="bi bi-eye"></i></a>
-                            </td>
-                            <td>
-                                <a class="btn btn-primary" href="${ajuan.url_plagiarisme_proposal}" role="button"><i class="bi bi-eye"></i></a>
-                            </td>
-                            <td>
+                      <tr>
+                          <td>${ajuan.npm}</td>
+                          <td><a href="./detail.html?npm=${ajuan.npm}">${ajuan.judul_penelitian}</a></td>
+                          <td>${getNameByCode(ajuan.pembimbing1)}</td>
+                          <td>${getNameByCode(ajuan.pembimbing2)}</td>
+                          <td>
+                              <a class="btn btn-primary" href="${ajuan.url_proposal_penelitian}" role="button"><i class="bi bi-eye"></i></a>
+                          </td>
+                          <td>
+                              <a class="btn btn-primary" href="${ajuan.url_plagiarisme_proposal}" role="button"><i class="bi bi-eye"></i></a>
+                          </td>
+                          <td>
                               <a class="btn btn-success" href="${ajuan.url_plagiarisme_proposal}" role="button"><i class="bi bi-check-circle"></i></a>
                               <a class="btn btn-danger" href="${ajuan.url_plagiarisme_proposal}" role="button"><i class="bi bi-x-circle"></i></a>
-                            </td>
-                        </tr>
-                    `;
+                          </td>
+                      </tr>
+                  `;
                       if (!ajuan.approval && ajuan.catatan === "") {
                           bodypm.innerHTML += rowData;
                       } else if (!ajuan.approval && ajuan.catatan !== "") {
