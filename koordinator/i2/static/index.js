@@ -12,7 +12,7 @@ CihuyDomReady(() => {
 
   const codeToNameMapping = {
     "0420058801" : "Roni Andarsyah, S.T.,M.Kom.,SFPC",
-    "0427078401" : "Cahyo Prianto, S.Pd.,M.T.,CDSP.,SFPC",
+    "0427078404" : "Cahyo Prianto, S.Pd.,M.T.,CDSP.,SFPC",
     "0407117405" : "M. Yusril Helmi Setyawan, S.Kom.,M.Kom.,SFPC",
     "0410118609" : "Rolly Maulana Awangga, S.T.,MT.,CAIP,SFPC",
     "0402058005" : "Mohamad Nurkamal Fauzan, S.T.,M.T.,SFPC",
