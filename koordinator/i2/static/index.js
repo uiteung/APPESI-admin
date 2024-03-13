@@ -52,6 +52,10 @@ CihuyDomReady(() => {
                             <td>
                                 <a class="btn btn-primary" href="${ajuan.url_plagiarisme_proposal}" role="button"><i class="bi bi-eye"></i></a>
                             </td>
+                            <td>
+                              <a class="btn btn-success" href="${ajuan.url_plagiarisme_proposal}" role="button"><i class="bi bi-check-circle"></i></a>
+                              <a class="btn btn-danger" href="${ajuan.url_plagiarisme_proposal}" role="button"><i class="bi bi-x-circle"></i></a>
+                            </td>
                         </tr>
                     `;
                       if (!ajuan.approval && ajuan.catatan === "") {
